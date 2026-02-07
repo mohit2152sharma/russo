@@ -1,0 +1,15 @@
+[package]
+name = "russo"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "russo"
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "russo"
+path = "src/main.rs"
+
+[dependencies]
+pyo3 = { version = "0.22", features = ["extension-module"] }
