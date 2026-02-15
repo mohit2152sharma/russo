@@ -24,9 +24,7 @@ AUDIO_OUT = Path(__file__).parent / "audio_output"
 class TestPipelineIntegration:
     """Full pipeline: GoogleSynthesizer → GeminiLiveAgent → ExactEvaluator."""
 
-    async def test_book_flight_pass(
-        self, google_synth: Any, gemini_live_agent: GeminiLiveAgent
-    ) -> None:
+    async def test_book_flight_pass(self, google_synth: Any, gemini_live_agent: GeminiLiveAgent) -> None:
         """Pipeline should PASS when the agent returns the expected tool call."""
         result = await run(
             prompt="Book a flight from New York to Los Angeles",
@@ -40,9 +38,7 @@ class TestPipelineIntegration:
         assert result.passed, f"Pipeline should pass:\n{result.summary()}"
         assert result.match_rate == 1.0
 
-    async def test_book_flight_checks_args(
-        self, google_synth: Any, gemini_live_agent: GeminiLiveAgent
-    ) -> None:
+    async def test_book_flight_checks_args(self, google_synth: Any, gemini_live_agent: GeminiLiveAgent) -> None:
         """Pipeline should PASS with ignore_extra_args and partial arg match."""
         result = await run(
             prompt="Book a flight from Chicago to Miami",
@@ -59,9 +55,7 @@ class TestPipelineIntegration:
         assert "from_city" in actual.arguments
         assert "to_city" in actual.arguments
 
-    async def test_wrong_tool_name_fails(
-        self, google_synth: Any, gemini_live_agent: GeminiLiveAgent
-    ) -> None:
+    async def test_wrong_tool_name_fails(self, google_synth: Any, gemini_live_agent: GeminiLiveAgent) -> None:
         """Pipeline should FAIL when we expect a tool the agent didn't call."""
         result = await run(
             prompt="Book a flight from London to Paris",
@@ -72,13 +66,9 @@ class TestPipelineIntegration:
         )
 
         print(f"\n{result.summary()}")
-        assert (
-            not result.passed
-        ), "Should fail — agent calls book_flight, not get_weather"
+        assert not result.passed, "Should fail — agent calls book_flight, not get_weather"
 
-    async def test_save_audio_for_inspection(
-        self, google_synth: Any, gemini_live_agent: GeminiLiveAgent
-    ) -> None:
+    async def test_save_audio_for_inspection(self, google_synth: Any, gemini_live_agent: GeminiLiveAgent) -> None:
         """Synthesize audio, save to disk, then run through the pipeline."""
         prompt = "Please book me a flight from San Francisco to Seattle"
 
@@ -103,9 +93,7 @@ class TestPipelineIntegration:
         print(f"  {result.summary()}")
         assert result.passed
 
-    async def test_pipeline_with_russo_run(
-        self, google_synth: Any, gemini_live_agent: GeminiLiveAgent
-    ) -> None:
+    async def test_pipeline_with_russo_run(self, google_synth: Any, gemini_live_agent: GeminiLiveAgent) -> None:
         """Verify the top-level russo.run() entry-point works end to end."""
         result = await russo.run(
             prompt="I need to fly from Boston to Denver",
@@ -119,9 +107,7 @@ class TestPipelineIntegration:
         assert isinstance(result, EvalResult)
         assert result.passed
 
-    async def test_save_multiple_prompts(
-        self, google_synth: Any, gemini_live_agent: GeminiLiveAgent
-    ) -> None:
+    async def test_save_multiple_prompts(self, google_synth: Any, gemini_live_agent: GeminiLiveAgent) -> None:
         """Synthesize two different prompts, save both, verify both produce correct tool calls."""
         prompts = [
             ("Book a flight from Tokyo to Sydney", "pipeline_tokyo_sydney.wav"),

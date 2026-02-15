@@ -164,9 +164,7 @@ def build_summary(results: Iterable[TestCaseResult]) -> dict[str, Any]:
     passed = 0
     for result in results:
         total += 1
-        if result.tool_call_result.passed and (
-            result.audio_result is None or result.audio_result.passed
-        ):
+        if result.tool_call_result.passed and (result.audio_result is None or result.audio_result.passed):
             passed += 1
     return {"total": total, "passed": passed, "failed": total - passed}
 

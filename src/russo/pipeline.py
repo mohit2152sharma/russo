@@ -47,9 +47,7 @@ class DefaultTestRunner(TestRunner):
         errors: list[str] = []
 
         for sample in samples:
-            context = ModelRunContext(
-                instructions=test_case.instructions, tools=test_case.tools
-            )
+            context = ModelRunContext(instructions=test_case.instructions, tools=test_case.tools)
             audio_stream = self._deps.stream_source.stream(sample)
             result = await self._deps.model_adapter.run(audio_stream, context)
             tool_calls.extend(result.tool_calls)
@@ -64,15 +62,11 @@ class DefaultTestRunner(TestRunner):
 
         audio_eval = None
         if test_case.audio_expectation and self._deps.audio_evaluator:
-            audio_eval = self._deps.audio_evaluator.evaluate(
-                test_case.audio_expectation, audio_responses
-            )
+            audio_eval = self._deps.audio_evaluator.evaluate(test_case.audio_expectation, audio_responses)
         elif test_case.audio_expectation:
             audio_eval = EvaluationResult(
                 passed=False,
-                errors=[
-                    "AudioResponseExpectation provided but no AudioResponseEvaluator configured."
-                ],
+                errors=["AudioResponseExpectation provided but no AudioResponseEvaluator configured."],
             )
 
         return TestCaseResult(

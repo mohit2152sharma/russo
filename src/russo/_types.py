@@ -103,14 +103,8 @@ class EvalResult(BaseModel):
         lines = [f"{status} ({self.match_rate:.0%} match rate)"]
         for m in self.matches:
             icon = "+" if m.matched else "-"
-            actual_str = (
-                f" -> {m.actual.name}({m.actual.arguments})"
-                if m.actual
-                else " -> (no match)"
-            )
-            lines.append(
-                f"  [{icon}] {m.expected.name}({m.expected.arguments}){actual_str}"
-            )
+            actual_str = f" -> {m.actual.name}({m.actual.arguments})" if m.actual else " -> (no match)"
+            lines.append(f"  [{icon}] {m.expected.name}({m.expected.arguments}){actual_str}")
             if m.details:
                 lines.append(f"      {m.details}")
         return "\n".join(lines)

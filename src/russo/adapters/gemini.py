@@ -80,9 +80,7 @@ class GeminiAgent:
         contents = [types.Part.from_bytes(data=data, mime_type=mime_type)]
 
         config = self._build_config(types)
-        logger.debug(
-            "Sending %d bytes of %s audio to %s", len(data), mime_type, self.model
-        )
+        logger.debug("Sending %d bytes of %s audio to %s", len(data), mime_type, self.model)
 
         response = await self.client.aio.models.generate_content(
             model=self.model,
@@ -222,9 +220,7 @@ class GeminiLiveAgent:
 
         assert self.client is not None  # guaranteed by __init__
         config = self._build_config(types)
-        async with self.client.aio.live.connect(
-            model=self.model, config=config
-        ) as session:
+        async with self.client.aio.live.connect(model=self.model, config=config) as session:
             return await self._run_on(session, audio)
 
     async def _run_on(self, session: Any, audio: Audio) -> AgentResponse:

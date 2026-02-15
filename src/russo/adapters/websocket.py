@@ -206,18 +206,12 @@ class WebSocketAgent:
     def _default_parse(self, raw: Any) -> AgentResponse:
         """Fallback parser: expects {"tool_calls": [{"name": ..., "arguments": ...}]}."""
         if isinstance(raw, dict) and "tool_calls" in raw:
-            calls = [
-                ToolCall(name=tc["name"], arguments=tc.get("arguments", {}))
-                for tc in raw["tool_calls"]
-            ]
+            calls = [ToolCall(name=tc["name"], arguments=tc.get("arguments", {})) for tc in raw["tool_calls"]]
             return AgentResponse(tool_calls=calls, raw=raw)
         # If aggregated into a list, check each message
         if isinstance(raw, list):
             for item in raw:
                 if isinstance(item, dict) and "tool_calls" in item:
-                    calls = [
-                        ToolCall(name=tc["name"], arguments=tc.get("arguments", {}))
-                        for tc in item["tool_calls"]
-                    ]
+                    calls = [ToolCall(name=tc["name"], arguments=tc.get("arguments", {})) for tc in item["tool_calls"]]
                     return AgentResponse(tool_calls=calls, raw=raw)
         return AgentResponse(tool_calls=[], raw=raw)

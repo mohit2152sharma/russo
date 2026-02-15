@@ -61,9 +61,7 @@ class ExactEvaluator:
 
         return EvalResult(passed=passed, expected=expected, actual=actual, matches=matches)
 
-    def _find_match(
-        self, expected: ToolCall, candidates: list[ToolCall], *, index: int | None
-    ) -> ToolCallMatch:
+    def _find_match(self, expected: ToolCall, candidates: list[ToolCall], *, index: int | None) -> ToolCallMatch:
         """Find a matching actual tool call for the expected one."""
         if index is not None:
             # Order-sensitive: must match at the exact position
@@ -98,9 +96,7 @@ class ExactEvaluator:
                 matched=False,
                 details=self._diff_details(expected, best),
             )
-        return ToolCallMatch(
-            expected=expected, matched=False, details="No actual tool calls to match against"
-        )
+        return ToolCallMatch(expected=expected, matched=False, details="No actual tool calls to match against")
 
     def _is_match(self, expected: ToolCall, actual: ToolCall) -> bool:
         """Check if an actual tool call matches the expected one."""
@@ -108,9 +104,7 @@ class ExactEvaluator:
             return False
         if self.ignore_extra_args:
             # All expected args must be present in actual (actual may have more)
-            return all(
-                actual.arguments.get(k) == v for k, v in expected.arguments.items()
-            )
+            return all(actual.arguments.get(k) == v for k, v in expected.arguments.items())
         return expected.arguments == actual.arguments
 
     def _distance(self, expected: ToolCall, actual: ToolCall) -> int:

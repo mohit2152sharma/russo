@@ -126,9 +126,7 @@ async def russo_result(request: pytest.FixtureRequest) -> EvalResult | None:
         prompt = marker.args[0]
 
     expect_raw: list[Any] = marker.kwargs.get("expect", [])
-    expect: list[ToolCall] = [
-        tc if isinstance(tc, ToolCall) else ToolCall(**tc) for tc in expect_raw
-    ]
+    expect: list[ToolCall] = [tc if isinstance(tc, ToolCall) else ToolCall(**tc) for tc in expect_raw]
 
     # Resolve fixtures
     synthesizer = request.getfixturevalue("russo_synthesizer")
@@ -243,9 +241,7 @@ def _write_html_report(path: str) -> None:
 # ---------------------------------------------------------------------------
 # Session cleanup
 # ---------------------------------------------------------------------------
-def pytest_sessionfinish(
-    session: pytest.Session, exitstatus: int
-) -> None:  # noqa: ARG001
+def pytest_sessionfinish(session: pytest.Session, exitstatus: int) -> None:  # noqa: ARG001
     """Reset global reporter state between sessions (relevant for xdist, etc.)."""
     global _reporter  # noqa: PLW0603
     _reporter = TerminalReporter()

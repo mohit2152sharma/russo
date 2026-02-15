@@ -72,9 +72,7 @@ class TestGoogleSynthesizer:
 
         with patch("russo.synthesizers.google.genai") as mock_genai:
             mock_client = MagicMock()
-            mock_client.aio.models.generate_content = AsyncMock(
-                return_value=mock_response
-            )
+            mock_client.aio.models.generate_content = AsyncMock(return_value=mock_response)
             mock_genai.Client.return_value = mock_client
 
             synth = GoogleSynthesizer(voice="Kore", api_key="test-key")
@@ -94,9 +92,7 @@ class TestGoogleSynthesizer:
 
         with patch("russo.synthesizers.google.genai") as mock_genai:
             mock_client = MagicMock()
-            mock_client.aio.models.generate_content = AsyncMock(
-                return_value=mock_response
-            )
+            mock_client.aio.models.generate_content = AsyncMock(return_value=mock_response)
             mock_genai.Client.return_value = mock_client
 
             synth = GoogleSynthesizer(api_key="test-key")
@@ -124,9 +120,7 @@ class TestGoogleSynthesizer:
 
         with patch("russo.synthesizers.google.genai") as mock_genai:
             mock_client = MagicMock()
-            mock_client.aio.models.generate_content = AsyncMock(
-                return_value=mock_response
-            )
+            mock_client.aio.models.generate_content = AsyncMock(return_value=mock_response)
             mock_genai.Client.return_value = mock_client
 
             synth = GoogleSynthesizer(api_key="test-key")
@@ -141,14 +135,10 @@ class TestGoogleSynthesizer:
 
         with patch("russo.synthesizers.google.genai") as mock_genai:
             mock_client = MagicMock()
-            mock_client.aio.models.generate_content = AsyncMock(
-                return_value=mock_response
-            )
+            mock_client.aio.models.generate_content = AsyncMock(return_value=mock_response)
             mock_genai.Client.return_value = mock_client
 
-            synth = GoogleSynthesizer(
-                voice="Puck", model="gemini-2.0-flash", api_key="k"
-            )
+            synth = GoogleSynthesizer(voice="Puck", model="gemini-2.0-flash", api_key="k")
             await synth.synthesize("Test prompt")
 
         call_kwargs = mock_client.aio.models.generate_content.call_args
@@ -156,9 +146,7 @@ class TestGoogleSynthesizer:
         assert call_kwargs.kwargs["contents"] == "Test prompt"
         config = call_kwargs.kwargs["config"]
         assert "AUDIO" in config.response_modalities
-        assert (
-            config.speech_config.voice_config.prebuilt_voice_config.voice_name == "Puck"
-        )
+        assert config.speech_config.voice_config.prebuilt_voice_config.voice_name == "Puck"
 
 
 # ---------------------------------------------------------------------------
@@ -166,9 +154,7 @@ class TestGoogleSynthesizer:
 # ---------------------------------------------------------------------------
 class TestCachedSynthesizer:
     @pytest.mark.asyncio
-    async def test_cache_miss_then_hit(
-        self, fake_synth: FakeSynthesizer, tmp_path: Path
-    ) -> None:
+    async def test_cache_miss_then_hit(self, fake_synth: FakeSynthesizer, tmp_path: Path) -> None:
         """First call hits inner synthesizer, second call serves from cache."""
         cache = AudioCache(tmp_path / "cache")
         synth = CachedSynthesizer(fake_synth, cache=cache)
@@ -181,9 +167,7 @@ class TestCachedSynthesizer:
         assert cache.size() == 1
 
     @pytest.mark.asyncio
-    async def test_different_prompts_cached_separately(
-        self, fake_synth: FakeSynthesizer, tmp_path: Path
-    ) -> None:
+    async def test_different_prompts_cached_separately(self, fake_synth: FakeSynthesizer, tmp_path: Path) -> None:
         cache = AudioCache(tmp_path / "cache")
         synth = CachedSynthesizer(fake_synth, cache=cache)
 
@@ -194,9 +178,7 @@ class TestCachedSynthesizer:
         assert cache.size() == 2
 
     @pytest.mark.asyncio
-    async def test_disabled_skips_cache(
-        self, fake_synth: FakeSynthesizer, tmp_path: Path
-    ) -> None:
+    async def test_disabled_skips_cache(self, fake_synth: FakeSynthesizer, tmp_path: Path) -> None:
         """When disabled, every call hits the inner synthesizer."""
         cache = AudioCache(tmp_path / "cache")
         synth = CachedSynthesizer(fake_synth, cache=cache, enabled=False)
@@ -208,9 +190,7 @@ class TestCachedSynthesizer:
         assert cache.size() == 0
 
     @pytest.mark.asyncio
-    async def test_toggle_enabled_at_runtime(
-        self, fake_synth: FakeSynthesizer, tmp_path: Path
-    ) -> None:
+    async def test_toggle_enabled_at_runtime(self, fake_synth: FakeSynthesizer, tmp_path: Path) -> None:
         cache = AudioCache(tmp_path / "cache")
         synth = CachedSynthesizer(fake_synth, cache=cache, enabled=True)
 
@@ -221,17 +201,11 @@ class TestCachedSynthesizer:
         assert fake_synth.calls == ["hello", "hello"]
 
     @pytest.mark.asyncio
-    async def test_cache_key_extra_differentiates(
-        self, fake_synth: FakeSynthesizer, tmp_path: Path
-    ) -> None:
+    async def test_cache_key_extra_differentiates(self, fake_synth: FakeSynthesizer, tmp_path: Path) -> None:
         """Different cache_key_extra should produce separate cache entries."""
         cache = AudioCache(tmp_path / "cache")
-        synth_a = CachedSynthesizer(
-            fake_synth, cache=cache, cache_key_extra={"voice": "Kore"}
-        )
-        synth_b = CachedSynthesizer(
-            fake_synth, cache=cache, cache_key_extra={"voice": "Puck"}
-        )
+        synth_a = CachedSynthesizer(fake_synth, cache=cache, cache_key_extra={"voice": "Kore"})
+        synth_b = CachedSynthesizer(fake_synth, cache=cache, cache_key_extra={"voice": "Puck"})
 
         await synth_a.synthesize("hello")
         await synth_b.synthesize("hello")
@@ -240,9 +214,7 @@ class TestCachedSynthesizer:
         assert cache.size() == 2
 
     @pytest.mark.asyncio
-    async def test_clear_cache_forces_re_synthesis(
-        self, fake_synth: FakeSynthesizer, tmp_path: Path
-    ) -> None:
+    async def test_clear_cache_forces_re_synthesis(self, fake_synth: FakeSynthesizer, tmp_path: Path) -> None:
         cache = AudioCache(tmp_path / "cache")
         synth = CachedSynthesizer(fake_synth, cache=cache)
 
@@ -309,9 +281,7 @@ class TestAudioCache:
 
     def test_cache_key_varies_with_extra(self) -> None:
         cache = AudioCache()
-        assert cache.cache_key("hello", voice="Kore") != cache.cache_key(
-            "hello", voice="Puck"
-        )
+        assert cache.cache_key("hello", voice="Kore") != cache.cache_key("hello", voice="Puck")
 
     def test_corrupt_meta_handled(self, tmp_path: Path) -> None:
         """Corrupt metadata file should return None and clean up."""
@@ -370,9 +340,7 @@ class TestGoogleSynthesizerIntegration:
         assert audio_a.data != audio_b.data
 
     @pytest.mark.asyncio
-    async def test_synthesize_with_cache_integration(
-        self, google_synth, tmp_path: Path
-    ) -> None:
+    async def test_synthesize_with_cache_integration(self, google_synth, tmp_path: Path) -> None:
         """CachedSynthesizer should cache the real API response on disk."""
         cache = AudioCache(tmp_path / "integration_cache")
         synth = CachedSynthesizer(google_synth, cache=cache)

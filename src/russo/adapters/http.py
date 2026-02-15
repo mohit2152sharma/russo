@@ -78,9 +78,6 @@ class HttpAgent:
         from russo._types import ToolCall
 
         if isinstance(raw, dict) and "tool_calls" in raw:
-            calls = [
-                ToolCall(name=tc["name"], arguments=tc.get("arguments", {}))
-                for tc in raw["tool_calls"]
-            ]
+            calls = [ToolCall(name=tc["name"], arguments=tc.get("arguments", {})) for tc in raw["tool_calls"]]
             return AgentResponse(tool_calls=calls, raw=raw)
         return AgentResponse(tool_calls=[], raw=raw)

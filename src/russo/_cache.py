@@ -60,9 +60,7 @@ class AudioCache:
             meta = json.loads(meta_path.read_text())
             data = audio_path.read_bytes()
             logger.debug("Cache hit: %s", key)
-            return Audio(
-                data=data, format=meta["format"], sample_rate=meta["sample_rate"]
-            )
+            return Audio(data=data, format=meta["format"], sample_rate=meta["sample_rate"])
         except (json.JSONDecodeError, KeyError, OSError) as exc:
             logger.warning("Corrupt cache entry %s, removing: %s", key, exc)
             self._remove_entry(key)
