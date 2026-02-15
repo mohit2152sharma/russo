@@ -1,0 +1,165 @@
+site_name: russo
+site_url: https://mohit2152sharma.github.io/russo
+site_description: Testing framework for LLM tool-call accuracy — audio & text
+site_author: Mohit Sharma
+repo_name: mohit2152sharma/russo
+repo_url: https://github.com/mohit2152sharma/russo
+edit_uri: edit/main/docs/
+
+copyright: Copyright &copy; 2025 Mohit Sharma
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/github
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_source: true
+            show_root_heading: true
+            show_root_full_path: false
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+            docstring_style: google
+            docstring_section_style: spacy
+            merge_init_into_class: true
+            show_signature_annotations: true
+            separate_signature: true
+            signature_crossrefs: true
+            members_order: source
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      normalize_issue_symbols: true
+      repo_url_shorthand: true
+      user: mohit2152sharma
+      repo: russo
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+      combine_header_slug: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/mohit2152sharma/russo
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/russo/
+  generator: false
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Installation: getting-started/installation.md
+      - First Test: getting-started/first-test.md
+  - Tutorial:
+      - tutorial/index.md
+      - Pipeline: tutorial/pipeline.md
+      - Adapters: tutorial/adapters.md
+      - Synthesizers: tutorial/synthesizers.md
+      - Evaluators: tutorial/evaluators.md
+      - Caching: tutorial/caching.md
+      - pytest Plugin: tutorial/pytest-plugin.md
+  - Concepts:
+      - Architecture: concepts/architecture.md
+      - Protocols: concepts/protocols.md
+  - API Reference:
+      - reference/index.md
+      - Core:
+          - russo: reference/core/init.md
+          - Types: reference/core/types.md
+          - Pipeline: reference/core/pipeline.md
+          - Protocols: reference/core/protocols.md
+          - Cache: reference/core/cache.md
+          - Assertions: reference/core/assertions.md
+      - Adapters:
+          - reference/adapters/index.md
+          - Gemini: reference/adapters/gemini.md
+          - OpenAI: reference/adapters/openai.md
+          - HTTP: reference/adapters/http.md
+          - WebSocket: reference/adapters/websocket.md
+          - Callable: reference/adapters/callable.md
+      - Synthesizers:
+          - reference/synthesizers/index.md
+          - Google: reference/synthesizers/google.md
+      - Evaluators:
+          - reference/evaluators/index.md
+          - Exact: reference/evaluators/exact.md
+      - Parsers:
+          - reference/parsers/index.md
+          - Gemini: reference/parsers/gemini.md
+          - OpenAI: reference/parsers/openai.md
+      - pytest Plugin: reference/pytest-plugin.md

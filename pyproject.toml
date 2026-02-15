@@ -1,11 +1,89 @@
-[build-system]
-requires = ["maturin>=1.0,<2.0"]
-build-backend = "maturin"
-
 [project]
 name = "russo"
-requires-python = ">=3.8"
-dynamic = ["version"]
+version = "0.1.0"
+description = "Testing framework for LLM tool-call accuracy — audio & text"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+    { name = "mohit sharma", email = "mohitlakshya@gmail.com" },
+]
+keywords = ["llm", "testing", "tool-calls", "audio", "ai", "evaluation", "pytest"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Framework :: Pytest",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Typing :: Typed",
+]
+requires-python = ">=3.12"
+dependencies = [
+    "google-genai>=1.63.0",
+    "pydantic>=2.7.0",
+]
 
-[tool.maturin]
-features = ["pyo3/extension-module"]
+[project.urls]
+Homepage = "https://mohit2152sharma.github.io/russo"
+Documentation = "https://mohit2152sharma.github.io/russo"
+Repository = "https://github.com/mohit2152sharma/russo"
+Issues = "https://github.com/mohit2152sharma/russo/issues"
+Changelog = "https://github.com/mohit2152sharma/russo/releases"
+
+[project.optional-dependencies]
+ws = [
+    "websockets>=14.0",
+]
+openai = [
+    "openai>=1.40.0",
+]
+all = [
+    "websockets>=14.0",
+    "openai>=1.40.0",
+]
+docs = [
+    "mkdocs-material>=9.5",
+    "mkdocstrings[python]>=0.24",
+    "mkdocs-gen-files>=0.5",
+    "mkdocs-literate-nav>=0.6",
+    "mkdocs-section-index>=0.3",
+]
+dev = [
+    "pre-commit>=4.0.0",
+    "ruff>=0.8.0",
+    "isort>=5.13.2",
+    "basedpyright>=1.13.0",
+    "codespell>=2.4.0",
+    "detect-secrets>=1.5.0",
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "websockets>=14.0",
+    "openai>=1.40.0",
+    "mkdocs-material>=9.5",
+    "mkdocstrings[python]>=0.24",
+    "mkdocs-gen-files>=0.5",
+    "mkdocs-literate-nav>=0.6",
+    "mkdocs-section-index>=0.3",
+]
+
+[project.entry-points.pytest11]
+russo = "russo.pytest_plugin"
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[project.scripts]
+russo = "russo.cli:main"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
