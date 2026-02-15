@@ -101,7 +101,8 @@ def google_synth(google_api_key: str | None):
         )
     except Exception as exc:
         pytest.skip(
-            f"No usable Google credentials found (set GOOGLE_API_KEY or run 'gcloud auth application-default login'): {exc}"
+            f"No usable Google credentials found "
+            f"(set GOOGLE_API_KEY or run 'gcloud auth application-default login'): {exc}"
         )
 
 
@@ -124,7 +125,8 @@ def gemini_client(google_api_key: str | None):
         )
     except Exception as exc:
         pytest.skip(
-            f"No usable Google credentials found (set GOOGLE_API_KEY or run 'gcloud auth application-default login'): {exc}"
+            f"No usable Google credentials found "
+            f"(set GOOGLE_API_KEY or run 'gcloud auth application-default login'): {exc}"
         )
 
 

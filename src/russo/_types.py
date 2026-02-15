@@ -6,6 +6,7 @@ giving us validation, serialization, and rich repr for free.
 
 from __future__ import annotations
 
+from pathlib import Path
 from typing import Any, Literal
 
 from pydantic import BaseModel, Field
@@ -27,9 +28,8 @@ class Audio(BaseModel):
             audio.save("output.wav")
         """
         import wave
-        from pathlib import Path as _Path
 
-        p = _Path(path)
+        p = Path(path)
         p.parent.mkdir(parents=True, exist_ok=True)
 
         if p.suffix.lower() == ".wav":
