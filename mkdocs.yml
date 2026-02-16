@@ -133,7 +133,19 @@ nav:
       - Evaluators: tutorial/evaluators.md
       - Caching: tutorial/caching.md
       - pytest Plugin: tutorial/pytest-plugin.md
-  - Examples: examples.md
+  - Examples:
+      - examples/index.md
+      - Basic Pipeline: examples/basic-pipeline.md
+      - Custom Agent: examples/custom-agent.md
+      - Custom Evaluator: examples/custom-evaluator.md
+      - Custom Synthesizer: examples/custom-synthesizer.md
+      - Gemini Adapters: examples/gemini-adapter.md
+      - OpenAI Adapters: examples/openai-adapter.md
+      - HTTP Agent: examples/http-agent.md
+      - WebSocket Agent: examples/websocket-agent.md
+      - Caching: examples/caching.md
+      - pytest Integration: examples/pytest-integration.md
+      - Config-Driven Pipeline: examples/config-driven.md
   - Concepts:
       - Architecture: concepts/architecture.md
       - Protocols: concepts/protocols.md
