@@ -144,6 +144,7 @@ nav:
       - HTTP Agent: examples/http-agent.md
       - WebSocket Agent: examples/websocket-agent.md
       - Caching: examples/caching.md
+      - Concurrent Runs: examples/concurrent-runs.md
       - pytest Integration: examples/pytest-integration.md
       - Config-Driven Pipeline: examples/config-driven.md
   - Concepts:

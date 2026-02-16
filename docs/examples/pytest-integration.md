@@ -149,6 +149,54 @@ test_flights.py::test_with_custom_message PASSED
 test_flights.py::test_detailed_inspection PASSED
 ```
 
+## Concurrent runs
+
+Run the same test multiple times or test multiple prompt variants — see [Concurrent Runs](concurrent-runs.md) for the full guide.
+
+### Multiple runs per test
+
+```python
+@pytest.mark.russo(
+    prompt="Book a flight from NYC to LA",
+    expect=[russo.tool_call("book_flight", from_city="NYC", to_city="LA")],
+    runs=5,
+)
+async def test_reliability(russo_result):
+    """Runs the prompt 5 times concurrently. Returns a BatchResult."""
+    assert russo_result.pass_rate >= 0.8
+```
+
+### Multiple prompts
+
+```python
+@pytest.mark.russo(
+    prompts=[
+        "Book a flight from NYC to LA",
+        "I need to fly from NYC to LA",
+    ],
+    expect=[russo.tool_call("book_flight", from_city="NYC", to_city="LA")],
+)
+async def test_prompt_variants(russo_result):
+    assert russo_result.total == 2
+    assert russo_result.passed
+```
+
+### Combined: prompts × runs
+
+```python
+@pytest.mark.russo(
+    prompts=["Book from NYC to LA", "Fly NYC to LA"],
+    expect=[russo.tool_call("book_flight", from_city="NYC", to_city="LA")],
+    runs=3,
+    max_concurrency=4,
+)
+async def test_full_matrix(russo_result):
+    assert russo_result.total == 6  # 2 prompts × 3 runs
+```
+
+!!! tip "Source file"
+    [`examples/pytest_integration/test_concurrent.py`](https://github.com/mohit2152sharma/russo/blob/main/examples/pytest_integration/test_concurrent.py)
+
 ## CLI options
 
 The russo plugin adds several command-line options:
@@ -159,6 +207,10 @@ pytest --russo-cache                # enable audio cache (default)
 pytest --russo-no-cache             # disable caching
 pytest --russo-clear-cache          # clear cache before running
 pytest --russo-cache-dir .my_cache  # custom cache directory
+
+# Concurrent runs
+pytest --russo-runs 5               # run each test 5 times (marker overrides this)
+pytest --russo-max-concurrency 3    # limit parallel pipeline executions
 
 # Reporting
 pytest --russo-report report.html   # generate HTML report

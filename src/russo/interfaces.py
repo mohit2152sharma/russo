@@ -31,7 +31,9 @@ class AudioStreamSource(Protocol):
 
 
 class ModelSessionAdapter(Protocol):
-    async def run(self, audio_stream: AsyncIterator[bytes], context: ModelRunContext) -> ModelRunResult:
+    async def run(
+        self, audio_stream: AsyncIterator[bytes], context: ModelRunContext
+    ) -> ModelRunResult:
         """Run a model session and return tool calls and audio responses."""
 
 
@@ -44,12 +46,16 @@ class ToolCallRecorder(Protocol):
 
 
 class ExpectationMatcher(Protocol):
-    def match(self, expectation: ToolCallExpectation, tool_calls: Sequence[ToolCall]) -> EvaluationResult:
+    def match(
+        self, expectation: ToolCallExpectation, tool_calls: Sequence[ToolCall]
+    ) -> EvaluationResult:
         """Compare expected tool calls against observed tool calls."""
 
 
 class AudioResponseEvaluator(Protocol):
-    def evaluate(self, expectation: AudioResponseExpectation, responses: Sequence[AudioResponse]) -> EvaluationResult:
+    def evaluate(
+        self, expectation: AudioResponseExpectation, responses: Sequence[AudioResponse]
+    ) -> EvaluationResult:
         """Evaluate audio responses against an expectation."""
 
 
@@ -57,8 +63,20 @@ class TestRunner(Protocol):
     async def run(self, test_case: TestCaseSpec) -> TestCaseResult:
         """Run a single test case."""
 
-    async def run_many(self, test_cases: Iterable[TestCaseSpec]) -> TestRunReport:
-        """Run multiple test cases and return a report."""
+    async def run_many(
+        self,
+        test_cases: Iterable[TestCaseSpec],
+        *,
+        runs: int = 1,
+        max_concurrency: int | None = None,
+    ) -> TestRunReport:
+        """Run multiple test cases and return a report.
+
+        Args:
+            test_cases: The test cases to execute.
+            runs: Number of times to run each test case concurrently.
+            max_concurrency: Cap on simultaneous runs (None = unlimited).
+        """
 
 
 class Reporter(Protocol):

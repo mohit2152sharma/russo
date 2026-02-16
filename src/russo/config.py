@@ -41,6 +41,8 @@ class TestSuiteConfig:
 class Config:
     pipeline: PipelineConfig
     suite: TestSuiteConfig
+    runs: int = 1
+    max_concurrency: int | None = None
 
 
 def _load_yaml(path: Path) -> dict[str, Any]:
@@ -110,7 +112,11 @@ def load_config(path: str | Path) -> Config:
         ),
     )
     suite = TestSuiteConfig(tests=[_parse_test_case(item) for item in payload["tests"]])
-    return Config(pipeline=pipeline, suite=suite)
+    runs = payload.get("runs", 1)
+    max_concurrency = payload.get("max_concurrency")
+    return Config(
+        pipeline=pipeline, suite=suite, runs=runs, max_concurrency=max_concurrency
+    )
 
 
 def build_registry(config: Config) -> ComponentRegistry:

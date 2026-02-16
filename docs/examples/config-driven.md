@@ -107,6 +107,11 @@ tests:
       name: "get_weather"
       arguments:
         city: "Tokyo"
+
+# Run each test 3 times concurrently (optional, default: 1)
+runs: 3
+# Limit to 2 simultaneous pipeline runs (optional, default: unlimited)
+max_concurrency: 2
 ```
 
 ## Running via CLI
@@ -118,6 +123,9 @@ russo --config config.yaml
 
 # Save the report as JSON
 russo --config config.yaml --report report.json
+
+# Override runs from the command line (takes precedence over config)
+russo --config config.yaml --runs 5 --max-concurrency 3
 ```
 
 ## Running programmatically

@@ -1,10 +1,11 @@
 """pytest plugin for russo — auto-discovered via the pytest11 entry point.
 
 Provides:
-- `russo` marker for declarative test scenarios
-- `russo_result` fixture that runs the full pipeline
-- Terminal summary via `pytest_terminal_summary` hook
-- `--russo-report` CLI option for HTML report output
+- ``russo`` marker for declarative test scenarios
+- ``russo_result`` fixture that runs the full pipeline
+- Terminal summary via ``pytest_terminal_summary`` hook
+- ``--russo-report`` CLI option for HTML report output
+- ``--russo-runs`` for concurrent multi-run testing
 """
 
 from __future__ import annotations
@@ -14,8 +15,8 @@ from typing import Any
 import pytest
 
 from russo._cache import AudioCache, CachedSynthesizer
-from russo._pipeline import run
-from russo._types import EvalResult, ToolCall
+from russo._pipeline import run, run_concurrent
+from russo._types import BatchResult, EvalResult, ToolCall
 from russo.evaluators.exact import ExactEvaluator
 from russo.report.terminal import TerminalReporter
 
@@ -63,6 +64,22 @@ def pytest_addoption(parser: pytest.Parser) -> None:
         metavar="DIR",
         help="Directory for cached audio files (default: .russo_cache).",
     )
+    group.addoption(
+        "--russo-runs",
+        action="store",
+        type=int,
+        default=None,
+        metavar="N",
+        help="Run each russo test N times concurrently (default: 1, can be overridden per-test via marker).",
+    )
+    group.addoption(
+        "--russo-max-concurrency",
+        action="store",
+        type=int,
+        default=None,
+        metavar="N",
+        help="Maximum concurrent pipeline runs (default: unlimited).",
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -71,7 +88,8 @@ def pytest_addoption(parser: pytest.Parser) -> None:
 def pytest_configure(config: pytest.Config) -> None:
     config.addinivalue_line(
         "markers",
-        "russo(prompt, expect, **kwargs): Mark a test as a russo tool-call scenario.",
+        "russo(prompt, expect, prompts=[], runs=1, max_concurrency=None, **kwargs): "
+        "Mark a test as a russo tool-call scenario.",
     )
 
 
@@ -108,31 +126,58 @@ def russo_evaluator() -> ExactEvaluator:
 
 
 @pytest.fixture
-async def russo_result(request: pytest.FixtureRequest) -> EvalResult | None:
-    """Run the russo pipeline based on the @pytest.mark.russo marker.
+async def russo_result(
+    request: pytest.FixtureRequest,
+) -> EvalResult | BatchResult | None:
+    """Run the russo pipeline based on the ``@pytest.mark.russo`` marker.
 
     Reads marker kwargs, resolves synthesizer/agent/evaluator fixtures,
-    runs the pipeline, and returns the EvalResult.
+    runs the pipeline, and returns the result.
 
-    Returns None if the test has no russo marker (allows manual usage).
+    Marker kwargs:
+        prompt (str): Single text prompt.
+        prompts (list[str]): Multiple text prompts (runs all concurrently).
+        expect (list): Expected tool calls.
+        runs (int): Number of times to run each prompt (default 1).
+            Falls back to ``--russo-runs`` CLI option.
+        max_concurrency (int | None): Cap on concurrent runs.
+            Falls back to ``--russo-max-concurrency`` CLI option.
+
+    Returns:
+        - ``EvalResult`` for single prompt + single run (backward compatible).
+        - ``BatchResult`` when using multiple prompts or ``runs > 1``.
+        - ``None`` if the test has no russo marker.
     """
     marker = request.node.get_closest_marker("russo")
     if marker is None:
         return None
 
-    # Extract marker arguments
+    # --- extract marker arguments ---
     prompt: str = marker.kwargs.get("prompt", "")
     if not prompt and marker.args:
         prompt = marker.args[0]
 
-    expect_raw: list[Any] = marker.kwargs.get("expect", [])
-    expect: list[ToolCall] = [tc if isinstance(tc, ToolCall) else ToolCall(**tc) for tc in expect_raw]
+    prompts: list[str] = list(marker.kwargs.get("prompts", []))
 
-    # Resolve fixtures
+    # runs: marker overrides CLI option, CLI option overrides default 1
+    runs: int = (
+        marker.kwargs.get("runs", 0)
+        or request.config.getoption("russo_runs", default=None)
+        or 1
+    )
+    max_concurrency: int | None = marker.kwargs.get(
+        "max_concurrency"
+    ) or request.config.getoption("russo_max_concurrency", default=None)
+
+    expect_raw: list[Any] = marker.kwargs.get("expect", [])
+    expect: list[ToolCall] = [
+        tc if isinstance(tc, ToolCall) else ToolCall(**tc) for tc in expect_raw
+    ]
+
+    # --- resolve fixtures ---
     synthesizer = request.getfixturevalue("russo_synthesizer")
     agent = request.getfixturevalue("russo_agent")
 
-    # Wrap synthesizer with caching (unless it's already cached or caching is off)
     cache_enabled = request.config.getoption("russo_cache", default=True)
     if cache_enabled and not isinstance(synthesizer, CachedSynthesizer):
         cache = request.getfixturevalue("russo_audio_cache")
@@ -145,17 +190,30 @@ async def russo_result(request: pytest.FixtureRequest) -> EvalResult | None:
     except pytest.FixtureLookupError:
         evaluator = ExactEvaluator()
 
-    result = await run(
-        prompt=prompt,
-        synthesizer=synthesizer,
-        agent=agent,
-        evaluator=evaluator,
-        expect=expect,
-    )
+    # --- decide execution mode ---
+    is_batch = bool(prompts) or runs > 1
 
-    # Collect for reporting
+    if is_batch:
+        effective_prompts = prompts if prompts else [prompt]
+        result: EvalResult | BatchResult = await run_concurrent(
+            prompts=effective_prompts,
+            synthesizer=synthesizer,
+            agent=agent,
+            evaluator=evaluator,
+            expect=expect,
+            runs=runs,
+            max_concurrency=max_concurrency,
+        )
+    else:
+        result = await run(
+            prompt=prompt,
+            synthesizer=synthesizer,
+            agent=agent,
+            evaluator=evaluator,
+            expect=expect,
+        )
+
     _reporter.add(request.node.nodeid, result)
-
     return result
 
 
@@ -187,12 +245,18 @@ def _write_html_report(path: str) -> None:
         status_class = "pass" if result.passed else "fail"
         status = "PASS" if result.passed else "FAIL"
         rate = f"{result.match_rate:.0%}"
+        runs_col = ""
+        if isinstance(result, BatchResult):
+            runs_col = f"{result.passed_count}/{result.total}"
+        else:
+            runs_col = "1/1" if result.passed else "0/1"
         details = result.summary().replace("\n", "<br>").replace(" ", "&nbsp;")
         rows += f"""
         <tr class="{status_class}">
             <td>{name}</td>
             <td>{status}</td>
             <td>{rate}</td>
+            <td>{runs_col}</td>
             <td><pre>{details}</pre></td>
         </tr>"""
 
@@ -225,6 +289,7 @@ def _write_html_report(path: str) -> None:
                 <th>Test</th>
                 <th>Status</th>
                 <th>Match Rate</th>
+                <th>Runs (pass/total)</th>
                 <th>Details</th>
             </tr>
         </thead>
@@ -241,7 +306,9 @@ def _write_html_report(path: str) -> None:
 # ---------------------------------------------------------------------------
 # Session cleanup
 # ---------------------------------------------------------------------------
-def pytest_sessionfinish(session: pytest.Session, exitstatus: int) -> None:  # noqa: ARG001
+def pytest_sessionfinish(
+    session: pytest.Session, exitstatus: int
+) -> None:  # noqa: ARG001
     """Reset global reporter state between sessions (relevant for xdist, etc.)."""
     global _reporter  # noqa: PLW0603
     _reporter = TerminalReporter()

@@ -103,8 +103,89 @@ class EvalResult(BaseModel):
         lines = [f"{status} ({self.match_rate:.0%} match rate)"]
         for m in self.matches:
             icon = "+" if m.matched else "-"
-            actual_str = f" -> {m.actual.name}({m.actual.arguments})" if m.actual else " -> (no match)"
-            lines.append(f"  [{icon}] {m.expected.name}({m.expected.arguments}){actual_str}")
+            actual_str = (
+                f" -> {m.actual.name}({m.actual.arguments})"
+                if m.actual
+                else " -> (no match)"
+            )
+            lines.append(
+                f"  [{icon}] {m.expected.name}({m.expected.arguments}){actual_str}"
+            )
             if m.details:
                 lines.append(f"      {m.details}")
+        return "\n".join(lines)
+
+
+class SingleRunResult(BaseModel):
+    """Result of a single pipeline run within a batch."""
+
+    prompt: str
+    run_index: int
+    eval_result: EvalResult
+
+
+class BatchResult(BaseModel):
+    """Aggregated results from running the pipeline multiple times.
+
+    Covers three scenarios:
+    - Single prompt, N runs (reliability testing)
+    - Multiple prompts, 1 run each (variant testing)
+    - Multiple prompts, N runs each (full matrix)
+    """
+
+    runs: list[SingleRunResult] = Field(default_factory=list)
+
+    @property
+    def total(self) -> int:
+        return len(self.runs)
+
+    @property
+    def passed_count(self) -> int:
+        return sum(1 for r in self.runs if r.eval_result.passed)
+
+    @property
+    def failed_count(self) -> int:
+        return self.total - self.passed_count
+
+    @property
+    def passed(self) -> bool:
+        """True only if every single run passed."""
+        return all(r.eval_result.passed for r in self.runs)
+
+    @property
+    def pass_rate(self) -> float:
+        """Fraction of runs that passed."""
+        if not self.runs:
+            return 1.0
+        return self.passed_count / self.total
+
+    @property
+    def match_rate(self) -> float:
+        """Average match rate across all runs."""
+        if not self.runs:
+            return 1.0
+        return sum(r.eval_result.match_rate for r in self.runs) / self.total
+
+    def summary(self) -> str:
+        """Human-readable summary grouped by prompt."""
+        status = "PASSED" if self.passed else "FAILED"
+        lines = [
+            f"{status} ({self.pass_rate:.0%} pass rate, {self.total} runs)",
+            f"  Passed: {self.passed_count}/{self.total}",
+        ]
+
+        prompts: dict[str, list[SingleRunResult]] = {}
+        for r in self.runs:
+            prompts.setdefault(r.prompt, []).append(r)
+
+        for prompt, results in prompts.items():
+            prompt_passed = sum(1 for r in results if r.eval_result.passed)
+            lines.append(f"  Prompt: {prompt!r}")
+            lines.append(f"    {prompt_passed}/{len(results)} passed")
+            for r in results:
+                icon = "+" if r.eval_result.passed else "-"
+                lines.append(
+                    f"    [{icon}] run {r.run_index}: {r.eval_result.match_rate:.0%} match"
+                )
+
         return "\n".join(lines)

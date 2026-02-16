@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import asyncio
 import uuid
 from dataclasses import dataclass
 from typing import Iterable
@@ -47,7 +48,9 @@ class DefaultTestRunner(TestRunner):
         errors: list[str] = []
 
         for sample in samples:
-            context = ModelRunContext(instructions=test_case.instructions, tools=test_case.tools)
+            context = ModelRunContext(
+                instructions=test_case.instructions, tools=test_case.tools
+            )
             audio_stream = self._deps.stream_source.stream(sample)
             result = await self._deps.model_adapter.run(audio_stream, context)
             tool_calls.extend(result.tool_calls)
@@ -62,11 +65,15 @@ class DefaultTestRunner(TestRunner):
 
         audio_eval = None
         if test_case.audio_expectation and self._deps.audio_evaluator:
-            audio_eval = self._deps.audio_evaluator.evaluate(test_case.audio_expectation, audio_responses)
+            audio_eval = self._deps.audio_evaluator.evaluate(
+                test_case.audio_expectation, audio_responses
+            )
         elif test_case.audio_expectation:
             audio_eval = EvaluationResult(
                 passed=False,
-                errors=["AudioResponseExpectation provided but no AudioResponseEvaluator configured."],
+                errors=[
+                    "AudioResponseExpectation provided but no AudioResponseEvaluator configured."
+                ],
             )
 
         return TestCaseResult(
@@ -78,9 +85,29 @@ class DefaultTestRunner(TestRunner):
             errors=errors,
         )
 
-    async def run_many(self, test_cases: Iterable[TestCaseSpec]) -> TestRunReport:
-        results = []
-        for test_case in test_cases:
-            results.append(await self.run(test_case))
+    async def run_many(
+        self,
+        test_cases: Iterable[TestCaseSpec],
+        *,
+        runs: int = 1,
+        max_concurrency: int | None = None,
+    ) -> TestRunReport:
+        """Run test cases concurrently, each repeated *runs* times.
+
+        When ``runs=1`` (default) this behaves like the original sequential loop
+        but executes all test cases concurrently.  With ``runs > 1`` each test
+        case is launched *runs* times for reliability / flakiness testing.
+        """
+        cases = list(test_cases)
+        semaphore = asyncio.Semaphore(max_concurrency) if max_concurrency else None
+
+        async def _guarded_run(tc: TestCaseSpec) -> TestCaseResult:
+            if semaphore:
+                async with semaphore:
+                    return await self.run(tc)
+            return await self.run(tc)
+
+        tasks = [_guarded_run(tc) for tc in cases for _ in range(runs)]
+        results = list(await asyncio.gather(*tasks))
         run_id = uuid.uuid4().hex
         return new_report(run_id, results)
