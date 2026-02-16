@@ -52,8 +52,7 @@ async def example_gemini_agent():
         model="gemini-2.0-flash",
         tools=[BOOK_FLIGHT_TOOL],
         system_instruction=(
-            "You are a travel assistant. When the user asks to book a flight, "
-            "call the book_flight function."
+            "You are a travel assistant. When the user asks to book a flight, call the book_flight function."
         ),
     )
 
@@ -87,8 +86,7 @@ async def example_gemini_live_agent():
         model="gemini-live-2.5-flash-preview",  # Google AI model name
         tools=[BOOK_FLIGHT_TOOL],
         system_instruction=(
-            "You are a travel assistant. When the user asks to book a flight, "
-            "call the book_flight function."
+            "You are a travel assistant. When the user asks to book a flight, call the book_flight function."
         ),
     )
 

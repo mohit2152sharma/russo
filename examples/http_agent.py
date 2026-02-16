@@ -82,7 +82,7 @@ async def example_http_custom_fields():
     """If your server expects different JSON field names."""
     agent = HttpAgent(
         url="http://localhost:8000/api/voice",
-        audio_field="audio_data",    # server expects "audio_data" instead of "audio"
+        audio_field="audio_data",  # server expects "audio_data" instead of "audio"
         format_field="audio_format",  # server expects "audio_format" instead of "format"
     )
 

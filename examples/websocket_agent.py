@@ -73,18 +73,17 @@ async def example_custom_protocol():
 
     def custom_send(audio: russo.Audio) -> str:
         """Build a custom JSON message for your server."""
-        return json.dumps({
-            "type": "audio_input",
-            "pcm": base64.b64encode(audio.data).decode(),
-            "sample_rate": audio.sample_rate,
-        })
+        return json.dumps(
+            {
+                "type": "audio_input",
+                "pcm": base64.b64encode(audio.data).decode(),
+                "sample_rate": audio.sample_rate,
+            }
+        )
 
     def is_done(messages: list) -> bool:
         """Stop collecting when the server sends a 'done' message."""
-        return any(
-            isinstance(m, dict) and m.get("type") == "done"
-            for m in messages
-        )
+        return any(isinstance(m, dict) and m.get("type") == "done" for m in messages)
 
     def aggregate_responses(messages: list):
         """Combine all tool_call messages into one response."""

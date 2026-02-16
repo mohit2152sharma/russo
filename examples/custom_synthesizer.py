@@ -61,11 +61,10 @@ class SilenceSynthesizer:
 
 # --- Demo ---
 
+
 @russo.agent
 async def fake_agent(audio: russo.Audio) -> russo.AgentResponse:
-    return russo.AgentResponse(
-        tool_calls=[russo.ToolCall(name="get_weather", arguments={"city": "Tokyo"})]
-    )
+    return russo.AgentResponse(tool_calls=[russo.ToolCall(name="get_weather", arguments={"city": "Tokyo"})])
 
 
 async def main():

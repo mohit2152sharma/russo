@@ -34,9 +34,7 @@ async def main():
         tool_recorder=build_component(registry, config.pipeline.tool_recorder),
         matcher=build_component(registry, config.pipeline.matcher),
         audio_evaluator=(
-            build_component(registry, config.pipeline.audio_evaluator)
-            if config.pipeline.audio_evaluator
-            else None
+            build_component(registry, config.pipeline.audio_evaluator) if config.pipeline.audio_evaluator else None
         ),
     )
 
