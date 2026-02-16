@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import time
 from typing import Any
 from unittest.mock import MagicMock
 
@@ -21,6 +22,13 @@ def pytest_addoption(parser: pytest.Parser) -> None:
         default=False,
         help="Run integration tests that hit real APIs (requires GOOGLE_API_KEY).",
     )
+    parser.addoption(
+        "--integration-delay",
+        type=float,
+        default=10.0,
+        metavar="SECONDS",
+        help="Delay in seconds between integration tests (default: 10). Only used with --integration.",
+    )
 
 
 def pytest_configure(config: pytest.Config) -> None:
@@ -30,15 +38,24 @@ def pytest_configure(config: pytest.Config) -> None:
     )
 
 
-def pytest_collection_modifyitems(
-    config: pytest.Config, items: list[pytest.Item]
-) -> None:
+def pytest_collection_modifyitems(config: pytest.Config, items: list[pytest.Item]) -> None:
     if config.getoption("--integration"):
         return  # user asked for integration tests, don't skip
     skip_integration = pytest.mark.skip(reason="needs --integration flag to run")
     for item in items:
         if "integration" in item.keywords:
             item.add_marker(skip_integration)
+
+
+def pytest_runtest_teardown(item: pytest.Item) -> None:
+    """After each integration test, sleep so tests run one-by-one with a delay."""
+    if "integration" not in item.keywords:
+        return
+    if not item.config.getoption("--integration", default=False):
+        return
+    delay = item.config.getoption("--integration-delay", default=10.0)
+    if delay > 0:
+        time.sleep(delay)
 
 
 # ---------------------------------------------------------------------------
@@ -148,14 +165,21 @@ BOOK_FLIGHT_TOOL = {
 }
 
 
+# Live API model IDs differ by backend (bidiGenerateContent).
+# Google AI (api_key): preview ID; Vertex AI: GA ID.
+GEMINI_LIVE_MODEL_GOOGLE_AI = "gemini-2.5-flash-native-audio-preview-12-2025"
+GEMINI_LIVE_MODEL_VERTEX = "gemini-live-2.5-flash-native-audio"
+
+
 @pytest.fixture
-def gemini_live_agent(gemini_client: Any):
+def gemini_live_agent(gemini_client: Any, google_api_key: str | None):
     """GeminiLiveAgent pre-configured with a book_flight tool for integration tests."""
     from russo.adapters.gemini import GeminiLiveAgent
 
+    model = GEMINI_LIVE_MODEL_GOOGLE_AI if google_api_key else GEMINI_LIVE_MODEL_VERTEX
     return GeminiLiveAgent(
         client=gemini_client,
-        model="gemini-live-2.5-flash-native-audio",
+        model=model,
         tools=[BOOK_FLIGHT_TOOL],
         system_instruction=(
             "You are a travel assistant. When the user asks to book a flight, "

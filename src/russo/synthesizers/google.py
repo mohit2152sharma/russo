@@ -53,9 +53,15 @@ class GoogleSynthesizer:
 
     async def synthesize(self, text: str) -> Audio:
         """Convert text to audio using Gemini TTS."""
+        # Use explicit Content with text Part so the backend treats this as text-to-speech
+        # (raw string can be interpreted as non-audio request and trigger 1007).
+        contents = types.Content(
+            role="user",
+            parts=[types.Part.from_text(text=text)],
+        )
         response = await self._client.aio.models.generate_content(
             model=self.model,
-            contents=text,
+            contents=contents,
             config=types.GenerateContentConfig(
                 response_modalities=["AUDIO"],
                 speech_config=types.SpeechConfig(

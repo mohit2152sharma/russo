@@ -5,15 +5,7 @@ from russo._assertions import ToolCallAssertionError, assert_tool_calls
 from russo._cache import AudioCache, CachedSynthesizer
 from russo._helpers import agent, tool_call
 from russo._pipeline import run, run_concurrent
-from russo._types import (
-    AgentResponse,
-    Audio,
-    BatchResult,
-    EvalResult,
-    SingleRunResult,
-    ToolCall,
-    ToolCallMatch,
-)
+from russo._types import AgentResponse, Audio, BatchResult, EvalResult, SingleRunResult, ToolCall, ToolCallMatch
 
 __all__ = [
     # Data types

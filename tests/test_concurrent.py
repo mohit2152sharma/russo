@@ -7,14 +7,7 @@ import asyncio
 import pytest
 
 from russo._pipeline import run_concurrent
-from russo._types import (
-    AgentResponse,
-    Audio,
-    BatchResult,
-    EvalResult,
-    SingleRunResult,
-    ToolCall,
-)
+from russo._types import AgentResponse, Audio, BatchResult, EvalResult, SingleRunResult, ToolCall
 from russo.evaluators.exact import ExactEvaluator
 
 

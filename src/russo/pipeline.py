@@ -14,14 +14,7 @@ from russo.interfaces import (
     TestRunner,
     ToolCallRecorder,
 )
-from russo.models import (
-    EvaluationResult,
-    ModelRunContext,
-    TestCaseResult,
-    TestCaseSpec,
-    TestRunReport,
-    new_report,
-)
+from russo.models import EvaluationResult, ModelRunContext, TestCaseResult, TestCaseSpec, TestRunReport, new_report
 
 
 @dataclass(frozen=True)

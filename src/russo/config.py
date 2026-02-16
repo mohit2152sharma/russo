@@ -5,13 +5,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from russo.models import (
-    AudioResponseExpectation,
-    AudioSampleSpec,
-    TestCaseSpec,
-    ToolCallExpectation,
-    ToolDefinition,
-)
+from russo.models import AudioResponseExpectation, AudioSampleSpec, TestCaseSpec, ToolCallExpectation, ToolDefinition
 from russo.registry import ComponentRegistry
 
 

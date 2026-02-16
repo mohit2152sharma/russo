@@ -143,7 +143,9 @@ class TestGoogleSynthesizer:
 
         call_kwargs = mock_client.aio.models.generate_content.call_args
         assert call_kwargs.kwargs["model"] == "gemini-2.0-flash"
-        assert call_kwargs.kwargs["contents"] == "Test prompt"
+        contents = call_kwargs.kwargs["contents"]
+        assert contents.role == "user"
+        assert len(contents.parts) == 1 and contents.parts[0].text == "Test prompt"
         config = call_kwargs.kwargs["config"]
         assert "AUDIO" in config.response_modalities
         assert config.speech_config.voice_config.prebuilt_voice_config.voice_name == "Puck"

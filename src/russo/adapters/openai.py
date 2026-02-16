@@ -14,13 +14,12 @@ from __future__ import annotations
 
 import asyncio
 import base64
-import io
 import json
 import logging
-import wave
 from typing import Any
 
 from russo._types import AgentResponse, Audio, ToolCall
+from russo.audio import AudioManager
 from russo.parsers.openai import OpenAIResponseParser
 
 logger = logging.getLogger("russo.adapters.openai")
@@ -104,7 +103,12 @@ class OpenAIAgent:
         if self.tools:
             kwargs["tools"] = self.tools
 
-        logger.debug("Sending %d bytes of %s audio to %s", len(audio.data), audio.format, self.model)
+        logger.debug(
+            "Sending %d bytes of %s audio to %s",
+            len(audio.data),
+            audio.format,
+            self.model,
+        )
 
         response = await self.client.chat.completions.create(**kwargs)
         return self._parser.parse(response)
@@ -189,14 +193,17 @@ class OpenAIRealtimeAgent:
         if configure and self.tools:
             await conn.session.update(session={"tools": self.tools})
 
-        pcm_data = _extract_pcm(audio)
+        pcm_data = AudioManager.prepare_for_openai_realtime(audio)
         audio_b64 = base64.b64encode(pcm_data).decode("ascii")
 
         await conn.input_audio_buffer.append(audio=audio_b64)
         await conn.input_audio_buffer.commit()
         await conn.response.create()
 
-        logger.debug("Sent %d bytes of audio to realtime session, waiting for response", len(pcm_data))
+        logger.debug(
+            "Sent %d bytes of audio to realtime session, waiting for response",
+            len(pcm_data),
+        )
 
         tool_calls: list[ToolCall] = []
         raw_events: list[Any] = []
@@ -218,11 +225,3 @@ class OpenAIRealtimeAgent:
             )
 
         return AgentResponse(tool_calls=tool_calls, raw=raw_events or None)
-
-
-def _extract_pcm(audio: Audio) -> bytes:
-    """Extract raw PCM frames from audio, stripping WAV headers if present."""
-    if audio.format == "wav" and len(audio.data) > 44 and audio.data[:4] == b"RIFF":
-        with wave.open(io.BytesIO(audio.data), "rb") as wf:
-            return wf.readframes(wf.getnframes())
-    return audio.data
