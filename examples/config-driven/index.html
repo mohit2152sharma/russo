@@ -1136,6 +1136,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../concurrent-runs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concurrent Runs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../pytest-integration/" class="md-nav__link">
         
   
@@ -2635,6 +2663,11 @@
 </span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;get_weather&quot;</span>
 </span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a><span class="w">      </span><span class="nt">arguments</span><span class="p">:</span>
 </span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a><span class="w">        </span><span class="nt">city</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Tokyo&quot;</span>
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a><span class="c1"># Run each test 3 times concurrently (optional, default: 1)</span>
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a><span class="nt">runs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a><span class="c1"># Limit to 2 simultaneous pipeline runs (optional, default: unlimited)</span>
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a><span class="nt">max_concurrency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
 </span></code></pre></div>
 <h2 id="running-via-cli">Running via CLI<a class="headerlink" href="#running-via-cli" title="Permanent link">&para;</a></h2>
 <p>The simplest way -- just point the <code>russo</code> command at your config:</p>
@@ -2642,6 +2675,9 @@
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># Save the report as JSON</span>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>russo<span class="w"> </span>--config<span class="w"> </span>config.yaml<span class="w"> </span>--report<span class="w"> </span>report.json
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1"># Override runs from the command line (takes precedence over config)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>russo<span class="w"> </span>--config<span class="w"> </span>config.yaml<span class="w"> </span>--runs<span class="w"> </span><span class="m">5</span><span class="w"> </span>--max-concurrency<span class="w"> </span><span class="m">3</span>
 </span></code></pre></div>
 <h2 id="running-programmatically">Running programmatically<a class="headerlink" href="#running-programmatically" title="Permanent link">&para;</a></h2>
 <p>For more control over component construction and result handling:</p>
