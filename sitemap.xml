@@ -5,15 +5,59 @@
          <lastmod>2026-02-16</lastmod>
     </url>
     <url>
-         <loc>https://mohit2152sharma.github.io/russo/examples/</loc>
-         <lastmod>2026-02-16</lastmod>
-    </url>
-    <url>
          <loc>https://mohit2152sharma.github.io/russo/concepts/architecture/</loc>
          <lastmod>2026-02-16</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/concepts/protocols/</loc>
+         <lastmod>2026-02-16</lastmod>
+    </url>
+    <url>
+         <loc>https://mohit2152sharma.github.io/russo/examples/</loc>
+         <lastmod>2026-02-16</lastmod>
+    </url>
+    <url>
+         <loc>https://mohit2152sharma.github.io/russo/examples/basic-pipeline/</loc>
+         <lastmod>2026-02-16</lastmod>
+    </url>
+    <url>
+         <loc>https://mohit2152sharma.github.io/russo/examples/caching/</loc>
+         <lastmod>2026-02-16</lastmod>
+    </url>
+    <url>
+         <loc>https://mohit2152sharma.github.io/russo/examples/config-driven/</loc>
+         <lastmod>2026-02-16</lastmod>
+    </url>
+    <url>
+         <loc>https://mohit2152sharma.github.io/russo/examples/custom-agent/</loc>
+         <lastmod>2026-02-16</lastmod>
+    </url>
+    <url>
+         <loc>https://mohit2152sharma.github.io/russo/examples/custom-evaluator/</loc>
+         <lastmod>2026-02-16</lastmod>
+    </url>
+    <url>
+         <loc>https://mohit2152sharma.github.io/russo/examples/custom-synthesizer/</loc>
+         <lastmod>2026-02-16</lastmod>
+    </url>
+    <url>
+         <loc>https://mohit2152sharma.github.io/russo/examples/gemini-adapter/</loc>
+         <lastmod>2026-02-16</lastmod>
+    </url>
+    <url>
+         <loc>https://mohit2152sharma.github.io/russo/examples/http-agent/</loc>
+         <lastmod>2026-02-16</lastmod>
+    </url>
+    <url>
+         <loc>https://mohit2152sharma.github.io/russo/examples/openai-adapter/</loc>
+         <lastmod>2026-02-16</lastmod>
+    </url>
+    <url>
+         <loc>https://mohit2152sharma.github.io/russo/examples/pytest-integration/</loc>
+         <lastmod>2026-02-16</lastmod>
+    </url>
+    <url>
+         <loc>https://mohit2152sharma.github.io/russo/examples/websocket-agent/</loc>
          <lastmod>2026-02-16</lastmod>
     </url>
     <url>

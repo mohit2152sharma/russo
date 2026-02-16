@@ -12,13 +12,13 @@
         <meta name="author" content="Mohit Sharma">
       
       
-        <link rel="canonical" href="https://mohit2152sharma.github.io/russo/tutorial/adapters/">
+        <link rel="canonical" href="https://mohit2152sharma.github.io/russo/examples/pytest-integration/">
       
       
-        <link rel="prev" href="../pipeline/">
+        <link rel="prev" href="../caching/">
       
       
-        <link rel="next" href="../synthesizers/">
+        <link rel="next" href="../config-driven/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Adapters - russo</title>
+        <title>pytest Integration - russo</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#adapters" class="md-skip">
+        <a href="#pytest-integration" class="md-skip">
           Skip to content
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Adapters
+              pytest Integration
             
           </span>
         </div>
@@ -262,13 +262,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../tutorial/" class="md-tabs__link">
           
   
   
@@ -284,11 +282,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../examples/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -539,31 +539,28 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -581,7 +578,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -599,7 +596,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../tutorial/" class="md-nav__link">
         
   
   
@@ -627,7 +624,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipeline/" class="md-nav__link">
+      <a href="../../tutorial/pipeline/" class="md-nav__link">
         
   
   
@@ -652,37 +649,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Adapters
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../tutorial/adapters/" class="md-nav__link">
         
   
   
@@ -698,120 +668,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#built-in-adapters" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Built-in Adapters
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Built-in Adapters">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gemini-sdk" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Gemini SDK
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#openai-sdk" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        OpenAI SDK
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#http" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        HTTP
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#websocket" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        WebSocket
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#callable-custom" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Callable (Custom)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#custom-adapters" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Custom Adapters
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api-reference" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API Reference
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -824,7 +680,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../synthesizers/" class="md-nav__link">
+      <a href="../../tutorial/synthesizers/" class="md-nav__link">
         
   
   
@@ -852,7 +708,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../evaluators/" class="md-nav__link">
+      <a href="../../tutorial/evaluators/" class="md-nav__link">
         
   
   
@@ -860,6 +716,378 @@
     
   
     Evaluators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/caching/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/pytest-plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pytest Plugin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic-pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../custom-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Custom Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../custom-evaluator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Custom Evaluator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../custom-synthesizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Custom Synthesizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gemini-adapter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gemini Adapters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openai-adapter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAI Adapters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../http-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../websocket-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WebSocket Agent
   
 
     
@@ -905,70 +1133,26 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../pytest-plugin/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
     
   
-    pytest Plugin
-  
-
-    
-  </span>
   
   
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
+    <li class="md-nav__item md-nav__item--active">
       
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
         
       
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
-        
-        
+        <label class="md-nav__link md-nav__link--active" for="__toc">
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
-            
   
   
   <span class="md-ellipsis">
     
   
-    Examples
+    pytest Integration
   
 
     
@@ -976,308 +1160,10 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Examples
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../examples/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Examples
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../examples/basic-pipeline/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Basic Pipeline
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../examples/custom-agent/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Custom Agent
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../examples/custom-evaluator/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Custom Evaluator
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../examples/custom-synthesizer/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Custom Synthesizer
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../examples/gemini-adapter/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Gemini Adapters
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../examples/openai-adapter/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    OpenAI Adapters
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../examples/http-agent/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    HTTP Agent
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../examples/websocket-agent/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    WebSocket Agent
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../examples/caching/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Caching
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../examples/pytest-integration/" class="md-nav__link">
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1293,6 +1179,131 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-configure-fixtures-in-conftestpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Configure fixtures in conftest.py
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-write-tests-using-the-marker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Write tests using the marker
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Write tests using the marker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-assertion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic assertion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#match-rate-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Match rate check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-failure-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom failure message
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detailed-inspection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed inspection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-run-the-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Run the tests
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cli-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI options
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1305,7 +1316,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../examples/config-driven/" class="md-nav__link">
+      <a href="../config-driven/" class="md-nav__link">
         
   
   
@@ -2436,22 +2447,44 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#built-in-adapters" class="md-nav__link">
+  <a href="#how-it-works" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Built-in Adapters
+        How it works
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Built-in Adapters">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-configure-fixtures-in-conftestpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Configure fixtures in conftest.py
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-write-tests-using-the-marker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Write tests using the marker
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Write tests using the marker">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#gemini-sdk" class="md-nav__link">
+  <a href="#basic-assertion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Gemini SDK
+        Basic assertion
       
     </span>
   </a>
@@ -2459,10 +2492,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#openai-sdk" class="md-nav__link">
+  <a href="#match-rate-check" class="md-nav__link">
     <span class="md-ellipsis">
       
-        OpenAI SDK
+        Match rate check
       
     </span>
   </a>
@@ -2470,10 +2503,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#http" class="md-nav__link">
+  <a href="#custom-failure-message" class="md-nav__link">
     <span class="md-ellipsis">
       
-        HTTP
+        Custom failure message
       
     </span>
   </a>
@@ -2481,21 +2514,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#websocket" class="md-nav__link">
+  <a href="#detailed-inspection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        WebSocket
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#callable-custom" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Callable (Custom)
+        Detailed inspection
       
     </span>
   </a>
@@ -2508,10 +2530,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#custom-adapters" class="md-nav__link">
+  <a href="#step-3-run-the-tests" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Custom Adapters
+        Step 3: Run the tests
       
     </span>
   </a>
@@ -2519,10 +2541,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#api-reference" class="md-nav__link">
+  <a href="#cli-options" class="md-nav__link">
     <span class="md-ellipsis">
       
-        API Reference
+        CLI options
       
     </span>
   </a>
@@ -2575,7 +2597,7 @@
         <a href="../" class="md-path__link">
           
   <span class="md-ellipsis">
-    Tutorial
+    Examples
   </span>
 
         </a>
@@ -2597,104 +2619,142 @@
   
 
 
-<h1 id="adapters">Adapters<a class="headerlink" href="#adapters" title="Permanent link">&para;</a></h1>
-<p>Adapters connect russo to your agent. Each adapter implements the <code>Agent</code> protocol:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Agent</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">audio</span><span class="p">:</span> <span class="n">Audio</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AgentResponse</span><span class="p">:</span> <span class="o">...</span>
-</span></code></pre></div>
-<p>russo ships with adapters for the most common patterns.</p>
-<h2 id="built-in-adapters">Built-in Adapters<a class="headerlink" href="#built-in-adapters" title="Permanent link">&para;</a></h2>
-<h3 id="gemini-sdk">Gemini SDK<a class="headerlink" href="#gemini-sdk" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">russo.adapters</span><span class="w"> </span><span class="kn">import</span> <span class="n">GeminiAgent</span><span class="p">,</span> <span class="n">GeminiLiveAgent</span>
-</span></code></pre></div>
-<p><strong><code>GeminiAgent</code></strong> — standard <code>generate_content</code> (request/response):</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">GeminiAgent</span><span class="p">(</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gemini-2.0-flash&quot;</span><span class="p">,</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">tools</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;function_declarations&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">...</span><span class="p">]}],</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">)</span>
-</span></code></pre></div>
-<p><strong><code>GeminiLiveAgent</code></strong> — Live API over WebSocket (streaming/real-time):</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">GeminiLiveAgent</span><span class="p">(</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gemini-2.0-flash-live-001&quot;</span><span class="p">,</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">tools</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;function_declarations&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">...</span><span class="p">]}],</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">)</span>
-</span></code></pre></div>
-<h3 id="openai-sdk">OpenAI SDK<a class="headerlink" href="#openai-sdk" title="Permanent link">&para;</a></h3>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Requires the <code>openai</code> extra: <code>pip install "russo[openai]"</code></p>
+<h1 id="pytest-integration">pytest Integration<a class="headerlink" href="#pytest-integration" title="Permanent link">&para;</a></h1>
+<p>The most natural way to use russo -- declarative test scenarios using markers and fixtures.</p>
+<div class="admonition tip">
+<p class="admonition-title">Source files</p>
+<p><a href="https://github.com/mohit2152sharma/russo/tree/main/examples/pytest_integration"><code>examples/pytest_integration/</code></a></p>
 </div>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">russo.adapters</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAIAgent</span><span class="p">,</span> <span class="n">OpenAIRealtimeAgent</span>
+<h2 id="how-it-works">How it works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h2>
+<p>The russo pytest plugin (auto-discovered via the <code>pytest11</code> entry point) provides:</p>
+<ul>
+<li><strong><code>@pytest.mark.russo</code></strong> -- marker to declare test scenarios</li>
+<li><strong><code>russo_result</code></strong> -- fixture that runs the full pipeline and returns an <code>EvalResult</code></li>
+<li><strong>Overridable fixtures</strong> -- <code>russo_synthesizer</code>, <code>russo_agent</code>, <code>russo_evaluator</code></li>
+<li><strong>CLI options</strong> -- caching, reporting, and more</li>
+</ul>
+<h2 id="step-1-configure-fixtures-in-conftestpy">Step 1: Configure fixtures in <code>conftest.py</code><a class="headerlink" href="#step-1-configure-fixtures-in-conftestpy" title="Permanent link">&para;</a></h2>
+<p>Define your synthesizer and agent as pytest fixtures:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># conftest.py</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">russo</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">russo.evaluators</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExactEvaluator</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;session&quot;</span><span class="p">)</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">def</span><span class="w"> </span><span class="nf">russo_synthesizer</span><span class="p">():</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;TTS synthesizer for all russo tests.&quot;&quot;&quot;</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;GOOGLE_API_KEY&quot;</span><span class="p">)</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="k">if</span> <span class="n">api_key</span><span class="p">:</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="kn">from</span><span class="w"> </span><span class="nn">russo.synthesizers</span><span class="w"> </span><span class="kn">import</span> <span class="n">GoogleSynthesizer</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        <span class="k">return</span> <span class="n">GoogleSynthesizer</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="c1"># Fallback for CI / offline use</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="k">class</span><span class="w"> </span><span class="nc">FakeSynthesizer</span><span class="p">:</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">synthesize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">russo</span><span class="o">.</span><span class="n">Audio</span><span class="p">:</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>            <span class="k">return</span> <span class="n">russo</span><span class="o">.</span><span class="n">Audio</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">4800</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;wav&quot;</span><span class="p">,</span> <span class="n">sample_rate</span><span class="o">=</span><span class="mi">24000</span><span class="p">)</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="k">return</span> <span class="n">FakeSynthesizer</span><span class="p">()</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;session&quot;</span><span class="p">)</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="k">def</span><span class="w"> </span><span class="nf">russo_agent</span><span class="p">():</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The agent under test.&quot;&quot;&quot;</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="c1"># Replace with your real agent:</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="c1">#   from russo.adapters import GeminiLiveAgent</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="c1">#   return GeminiLiveAgent(client=..., model=&quot;...&quot;, tools=[...])</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="nd">@russo</span><span class="o">.</span><span class="n">agent</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">fake_agent</span><span class="p">(</span><span class="n">audio</span><span class="p">:</span> <span class="n">russo</span><span class="o">.</span><span class="n">Audio</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">russo</span><span class="o">.</span><span class="n">AgentResponse</span><span class="p">:</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>        <span class="k">return</span> <span class="n">russo</span><span class="o">.</span><span class="n">AgentResponse</span><span class="p">(</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>            <span class="n">tool_calls</span><span class="o">=</span><span class="p">[</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>                <span class="n">russo</span><span class="o">.</span><span class="n">ToolCall</span><span class="p">(</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>                    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;book_flight&quot;</span><span class="p">,</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>                    <span class="n">arguments</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;from_city&quot;</span><span class="p">:</span> <span class="s2">&quot;NYC&quot;</span><span class="p">,</span> <span class="s2">&quot;to_city&quot;</span><span class="p">:</span> <span class="s2">&quot;LA&quot;</span><span class="p">},</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>                <span class="p">),</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>            <span class="p">]</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>        <span class="p">)</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="k">return</span> <span class="n">fake_agent</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="k">def</span><span class="w"> </span><span class="nf">russo_evaluator</span><span class="p">():</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Override to use a custom evaluator (defaults to ExactEvaluator).&quot;&quot;&quot;</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    <span class="k">return</span> <span class="n">ExactEvaluator</span><span class="p">()</span>
 </span></code></pre></div>
-<p><strong><code>OpenAIAgent</code></strong> — Chat Completions with audio input:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">OpenAIAgent</span><span class="p">(</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-audio-preview&quot;</span><span class="p">,</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">],</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">)</span>
+<h2 id="step-2-write-tests-using-the-marker">Step 2: Write tests using the marker<a class="headerlink" href="#step-2-write-tests-using-the-marker" title="Permanent link">&para;</a></h2>
+<p>The <code>@pytest.mark.russo</code> marker declares the prompt and expected tool calls. The <code>russo_result</code> fixture runs the full pipeline automatically.</p>
+<h3 id="basic-assertion">Basic assertion<a class="headerlink" href="#basic-assertion" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># test_flights.py</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">russo</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">russo</span><span class="p">(</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;Book a flight from NYC to LA&quot;</span><span class="p">,</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">expect</span><span class="o">=</span><span class="p">[</span><span class="n">russo</span><span class="o">.</span><span class="n">tool_call</span><span class="p">(</span><span class="s2">&quot;book_flight&quot;</span><span class="p">,</span> <span class="n">from_city</span><span class="o">=</span><span class="s2">&quot;NYC&quot;</span><span class="p">,</span> <span class="n">to_city</span><span class="o">=</span><span class="s2">&quot;LA&quot;</span><span class="p">)],</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">)</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_book_flight</span><span class="p">(</span><span class="n">russo_result</span><span class="p">):</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Verify the agent calls book_flight with the right arguments.&quot;&quot;&quot;</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="n">russo</span><span class="o">.</span><span class="n">assert_tool_calls</span><span class="p">(</span><span class="n">russo_result</span><span class="p">)</span>
 </span></code></pre></div>
-<p><strong><code>OpenAIRealtimeAgent</code></strong> — Realtime API over WebSocket:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">OpenAIRealtimeAgent</span><span class="p">(</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-realtime-preview&quot;</span><span class="p">,</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">],</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">)</span>
+<h3 id="match-rate-check">Match rate check<a class="headerlink" href="#match-rate-check" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">russo</span><span class="p">(</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;Book a flight from NYC to LA&quot;</span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">expect</span><span class="o">=</span><span class="p">[</span><span class="n">russo</span><span class="o">.</span><span class="n">tool_call</span><span class="p">(</span><span class="s2">&quot;book_flight&quot;</span><span class="p">,</span> <span class="n">from_city</span><span class="o">=</span><span class="s2">&quot;NYC&quot;</span><span class="p">,</span> <span class="n">to_city</span><span class="o">=</span><span class="s2">&quot;LA&quot;</span><span class="p">)],</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">)</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_match_rate</span><span class="p">(</span><span class="n">russo_result</span><span class="p">):</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Check that every expected tool call was matched.&quot;&quot;&quot;</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="k">assert</span> <span class="n">russo_result</span><span class="o">.</span><span class="n">passed</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="k">assert</span> <span class="n">russo_result</span><span class="o">.</span><span class="n">match_rate</span> <span class="o">==</span> <span class="mf">1.0</span>
 </span></code></pre></div>
-<h3 id="http">HTTP<a class="headerlink" href="#http" title="Permanent link">&para;</a></h3>
-<p>Send audio to any HTTP endpoint:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">russo.adapters</span><span class="w"> </span><span class="kn">import</span> <span class="n">HttpAgent</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">russo.parsers</span><span class="w"> </span><span class="kn">import</span> <span class="n">GeminiResponseParser</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">HttpAgent</span><span class="p">(</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://my-agent.example.com/audio&quot;</span><span class="p">,</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="n">parser</span><span class="o">=</span><span class="n">GeminiResponseParser</span><span class="p">(),</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="p">)</span>
+<h3 id="custom-failure-message">Custom failure message<a class="headerlink" href="#custom-failure-message" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">russo</span><span class="p">(</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;Book a flight from NYC to LA&quot;</span><span class="p">,</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">expect</span><span class="o">=</span><span class="p">[</span><span class="n">russo</span><span class="o">.</span><span class="n">tool_call</span><span class="p">(</span><span class="s2">&quot;book_flight&quot;</span><span class="p">,</span> <span class="n">from_city</span><span class="o">=</span><span class="s2">&quot;NYC&quot;</span><span class="p">,</span> <span class="n">to_city</span><span class="o">=</span><span class="s2">&quot;LA&quot;</span><span class="p">)],</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">)</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_with_custom_message</span><span class="p">(</span><span class="n">russo_result</span><span class="p">):</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">russo</span><span class="o">.</span><span class="n">assert_tool_calls</span><span class="p">(</span><span class="n">russo_result</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Flight booking agent failed&quot;</span><span class="p">)</span>
 </span></code></pre></div>
-<h3 id="websocket">WebSocket<a class="headerlink" href="#websocket" title="Permanent link">&para;</a></h3>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Requires the <code>ws</code> extra: <code>pip install "russo[ws]"</code></p>
-</div>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">russo.adapters</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebSocketAgent</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">WebSocketAgent</span><span class="p">(</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;wss://my-agent.example.com/ws&quot;</span><span class="p">,</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="n">parser</span><span class="o">=</span><span class="n">my_parser</span><span class="p">,</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">)</span>
+<h3 id="detailed-inspection">Detailed inspection<a class="headerlink" href="#detailed-inspection" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">russo</span><span class="p">(</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;Book a flight from NYC to LA&quot;</span><span class="p">,</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">expect</span><span class="o">=</span><span class="p">[</span><span class="n">russo</span><span class="o">.</span><span class="n">tool_call</span><span class="p">(</span><span class="s2">&quot;book_flight&quot;</span><span class="p">,</span> <span class="n">from_city</span><span class="o">=</span><span class="s2">&quot;NYC&quot;</span><span class="p">,</span> <span class="n">to_city</span><span class="o">=</span><span class="s2">&quot;LA&quot;</span><span class="p">)],</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">)</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_detailed_inspection</span><span class="p">(</span><span class="n">russo_result</span><span class="p">):</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Access individual match details for richer assertions.&quot;&quot;&quot;</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="k">assert</span> <span class="n">russo_result</span><span class="o">.</span><span class="n">passed</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">russo_result</span><span class="o">.</span><span class="n">matches</span><span class="p">:</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>        <span class="k">assert</span> <span class="n">match</span><span class="o">.</span><span class="n">matched</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Expected </span><span class="si">{</span><span class="n">match</span><span class="o">.</span><span class="n">expected</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> was not matched&quot;</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>        <span class="k">assert</span> <span class="n">match</span><span class="o">.</span><span class="n">actual</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>        <span class="k">assert</span> <span class="n">match</span><span class="o">.</span><span class="n">actual</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">match</span><span class="o">.</span><span class="n">expected</span><span class="o">.</span><span class="n">name</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">russo_result</span><span class="o">.</span><span class="n">actual</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    <span class="k">assert</span> <span class="n">russo_result</span><span class="o">.</span><span class="n">actual</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;book_flight&quot;</span>
 </span></code></pre></div>
-<h3 id="callable-custom">Callable (Custom)<a class="headerlink" href="#callable-custom" title="Permanent link">&para;</a></h3>
-<p>Wrap any async function:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">russo</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nd">@russo</span><span class="o">.</span><span class="n">agent</span>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">my_agent</span><span class="p">(</span><span class="n">audio</span><span class="p">:</span> <span class="n">russo</span><span class="o">.</span><span class="n">Audio</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">russo</span><span class="o">.</span><span class="n">AgentResponse</span><span class="p">:</span>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="c1"># Your custom logic here</span>
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">call_my_api</span><span class="p">(</span><span class="n">audio</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>    <span class="k">return</span> <span class="n">russo</span><span class="o">.</span><span class="n">AgentResponse</span><span class="p">(</span>
-</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>        <span class="n">tool_calls</span><span class="o">=</span><span class="p">[</span><span class="n">russo</span><span class="o">.</span><span class="n">ToolCall</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="n">arguments</span><span class="o">=</span><span class="p">{</span><span class="o">...</span><span class="p">})]</span>
-</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>    <span class="p">)</span>
+<h2 id="step-3-run-the-tests">Step 3: Run the tests<a class="headerlink" href="#step-3-run-the-tests" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>pytest<span class="w"> </span>examples/pytest_integration/<span class="w"> </span>-v
 </span></code></pre></div>
-<p>Or use the class directly:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">russo.adapters</span><span class="w"> </span><span class="kn">import</span> <span class="n">CallableAgent</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">CallableAgent</span><span class="p">(</span><span class="n">my_async_function</span><span class="p">)</span>
+<p>Expected output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>test_flights.py::test_book_flight PASSED
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>test_flights.py::test_match_rate PASSED
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>test_flights.py::test_with_custom_message PASSED
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>test_flights.py::test_detailed_inspection PASSED
 </span></code></pre></div>
-<h2 id="custom-adapters">Custom Adapters<a class="headerlink" href="#custom-adapters" title="Permanent link">&para;</a></h2>
-<p>You don't need to inherit from anything. Just implement the <code>run</code> method:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyCustomAgent</span><span class="p">:</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">audio</span><span class="p">:</span> <span class="n">russo</span><span class="o">.</span><span class="n">Audio</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">russo</span><span class="o">.</span><span class="n">AgentResponse</span><span class="p">:</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>        <span class="c1"># Send audio to your service</span>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>        <span class="n">raw</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_service</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">audio</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>        <span class="c1"># Parse and return</span>
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>        <span class="k">return</span> <span class="n">russo</span><span class="o">.</span><span class="n">AgentResponse</span><span class="p">(</span>
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>            <span class="n">tool_calls</span><span class="o">=</span><span class="p">[</span><span class="n">russo</span><span class="o">.</span><span class="n">ToolCall</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">raw</span><span class="p">[</span><span class="s2">&quot;tool&quot;</span><span class="p">],</span> <span class="n">arguments</span><span class="o">=</span><span class="n">raw</span><span class="p">[</span><span class="s2">&quot;args&quot;</span><span class="p">])]</span>
-</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>        <span class="p">)</span>
+<h2 id="cli-options">CLI options<a class="headerlink" href="#cli-options" title="Permanent link">&para;</a></h2>
+<p>The russo plugin adds several command-line options:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Caching</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>pytest<span class="w"> </span>--russo-cache<span class="w">                </span><span class="c1"># enable audio cache (default)</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>pytest<span class="w"> </span>--russo-no-cache<span class="w">             </span><span class="c1"># disable caching</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>pytest<span class="w"> </span>--russo-clear-cache<span class="w">          </span><span class="c1"># clear cache before running</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>pytest<span class="w"> </span>--russo-cache-dir<span class="w"> </span>.my_cache<span class="w">  </span><span class="c1"># custom cache directory</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1"># Reporting</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>pytest<span class="w"> </span>--russo-report<span class="w"> </span>report.html<span class="w">   </span><span class="c1"># generate HTML report</span>
 </span></code></pre></div>
-<p>russo uses structural typing — if your class has <code>async def run(self, audio: Audio) -&gt; AgentResponse</code>, it's an Agent.</p>
-<h2 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h2>
-<p>See the <a href="../../reference/adapters/">Adapters reference</a> for full API docs on each adapter.</p>
 
 
 
@@ -2732,7 +2792,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../pipeline/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Pipeline">
+          <a href="../caching/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Caching">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2742,20 +2802,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Pipeline
+                Caching
               </div>
             </div>
           </a>
         
         
           
-          <a href="../synthesizers/" class="md-footer__link md-footer__link--next" aria-label="Next: Synthesizers">
+          <a href="../config-driven/" class="md-footer__link md-footer__link--next" aria-label="Next: Config-Driven Pipeline">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Synthesizers
+                Config-Driven Pipeline
               </div>
             </div>
             <div class="md-footer__button md-icon">
