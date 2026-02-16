@@ -82,7 +82,7 @@ from russo.adapters import GeminiLiveAgent
 
 agent = GeminiLiveAgent(
     client=client,
-    model="gemini-live-2.5-flash-preview",  # Google AI model name
+    model="gemini-live-2.5-flash-native-audio",
     tools=[BOOK_FLIGHT_TOOL],
     system_instruction=(
         "You are a travel assistant. When the user asks to book "
@@ -99,9 +99,8 @@ result = await russo.run(
 )
 ```
 
-!!! note "Model names differ by backend"
-    - **Google AI**: `gemini-live-2.5-flash-preview`
-    - **Vertex AI**: `gemini-2.0-flash-live-preview-04-09`
+!!! note "Model"
+    Use ``gemini-live-2.5-flash-native-audio`` for both Google AI and Vertex AI.
 
 ## Example 3: Vertex AI authentication
 
@@ -117,7 +116,7 @@ client = genai.Client(
 
 agent = GeminiLiveAgent(
     client=client,
-    model="gemini-2.0-flash-live-preview-04-09",  # Vertex AI model name
+    model="gemini-live-2.5-flash-native-audio",
     tools=[BOOK_FLIGHT_TOOL],
 )
 

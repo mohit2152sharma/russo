@@ -80,7 +80,9 @@ class GeminiAgent:
         contents = [types.Part.from_bytes(data=data, mime_type=mime_type)]
 
         config = self._build_config(types)
-        logger.debug("Sending %d bytes of %s audio to %s", len(data), mime_type, self.model)
+        logger.debug(
+            "Sending %d bytes of %s audio to %s", len(data), mime_type, self.model
+        )
 
         response = await self.client.aio.models.generate_content(
             model=self.model,
@@ -157,7 +159,7 @@ class GeminiLiveAgent:
         client = genai.Client(vertexai=True, project="my-project", location="us-central1")
         agent = GeminiLiveAgent(
             client=client,
-            model="gemini-2.0-flash-live-preview-04-09",
+            model="gemini-live-2.5-flash-native-audio",
             tools=[book_flight_declaration],
         )
         response = await agent.run(audio)
@@ -172,8 +174,7 @@ class GeminiLiveAgent:
     Note:
         Model names differ by backend:
 
-        - **Vertex AI**: ``gemini-2.0-flash-live-preview-04-09``
-        - **Google AI**: ``gemini-live-2.5-flash-preview``
+        - **Vertex AI** / **Google AI**: ``gemini-live-2.5-flash-native-audio``
     """
 
     def __init__(
@@ -181,7 +182,7 @@ class GeminiLiveAgent:
         *,
         client: Any | None = None,
         session: Any | None = None,
-        model: str = "gemini-2.0-flash-live-preview-04-09",
+        model: str = "gemini-live-2.5-flash-native-audio",
         tools: list[Any] | None = None,
         system_instruction: str | None = None,
         config: Any | None = None,
@@ -220,7 +221,9 @@ class GeminiLiveAgent:
 
         assert self.client is not None  # guaranteed by __init__
         config = self._build_config(types)
-        async with self.client.aio.live.connect(model=self.model, config=config) as session:
+        async with self.client.aio.live.connect(
+            model=self.model, config=config
+        ) as session:
             return await self._run_on(session, audio)
 
     async def _run_on(self, session: Any, audio: Audio) -> AgentResponse:

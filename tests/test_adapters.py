@@ -193,7 +193,9 @@ class TestGeminiAgentRun:
         config = call_kwargs["config"]
         assert config is not None
 
-    async def test_no_tools_no_instruction_sends_none_config(self, audio: Audio) -> None:
+    async def test_no_tools_no_instruction_sends_none_config(
+        self, audio: Audio
+    ) -> None:
         resp = _make_gemini_response([])
         client = _mock_client(resp)
 
@@ -228,7 +230,9 @@ class TestGeminiAgentRun:
 
     async def test_api_error_propagates(self, audio: Audio) -> None:
         client = MagicMock()
-        client.aio.models.generate_content = AsyncMock(side_effect=RuntimeError("quota exceeded"))
+        client.aio.models.generate_content = AsyncMock(
+            side_effect=RuntimeError("quota exceeded")
+        )
 
         agent = GeminiAgent(client=client)
         with pytest.raises(RuntimeError, match="quota exceeded"):
@@ -292,9 +296,13 @@ class TestGeminiAgentIntegration:
             ),
         )
 
-    async def test_audio_roundtrip_tool_call(self, agent: GeminiAgent, google_synth: Any) -> None:
+    async def test_audio_roundtrip_tool_call(
+        self, agent: GeminiAgent, google_synth: Any
+    ) -> None:
         """Synthesize 'book a flight from NYC to LA' → send to Gemini → expect book_flight."""
-        audio = await google_synth.synthesize("Book a flight from New York to Los Angeles")
+        audio = await google_synth.synthesize(
+            "Book a flight from New York to Los Angeles"
+        )
         result = await agent.run(audio)
 
         assert len(result.tool_calls) >= 1, f"Expected tool calls, got: {result.raw}"
@@ -303,7 +311,9 @@ class TestGeminiAgentIntegration:
         assert "from_city" in call.arguments
         assert "to_city" in call.arguments
 
-    async def test_no_tool_call_for_irrelevant_prompt(self, gemini_client: Any, google_synth: Any) -> None:
+    async def test_no_tool_call_for_irrelevant_prompt(
+        self, gemini_client: Any, google_synth: Any
+    ) -> None:
         """Audio unrelated to the tool should return zero tool calls (or text-only)."""
         agent = GeminiAgent(
             client=gemini_client,
@@ -317,15 +327,21 @@ class TestGeminiAgentIntegration:
         audio = await google_synth.synthesize("What is the capital of France?")
         result = await agent.run(audio)
 
-        assert result.tool_calls == [], f"Expected no tool calls, got: {result.tool_calls}"
+        assert (
+            result.tool_calls == []
+        ), f"Expected no tool calls, got: {result.tool_calls}"
 
-    async def test_multiple_tools_selects_correct_one(self, gemini_client: Any, google_synth: Any) -> None:
+    async def test_multiple_tools_selects_correct_one(
+        self, gemini_client: Any, google_synth: Any
+    ) -> None:
         """With two tools declared, Gemini should pick the right one based on the prompt."""
         agent = GeminiAgent(
             client=gemini_client,
             model="gemini-2.0-flash",
             tools=[BOOK_FLIGHT_TOOL, GET_WEATHER_TOOL],
-            system_instruction=("You are a helpful assistant. Call the appropriate tool based on the user's request."),
+            system_instruction=(
+                "You are a helpful assistant. Call the appropriate tool based on the user's request."
+            ),
         )
         audio = await google_synth.synthesize("What's the weather in Tokyo?")
         result = await agent.run(audio)
@@ -334,7 +350,9 @@ class TestGeminiAgentIntegration:
         assert result.tool_calls[0].name == "get_weather"
         assert "city" in result.tool_calls[0].arguments
 
-    async def test_raw_response_is_sdk_object(self, agent: GeminiAgent, google_synth: Any) -> None:
+    async def test_raw_response_is_sdk_object(
+        self, agent: GeminiAgent, google_synth: Any
+    ) -> None:
         """raw field should contain the actual SDK response object for debugging."""
         audio = await google_synth.synthesize("Book a flight from Chicago to Miami")
         result = await agent.run(audio)
@@ -343,14 +361,18 @@ class TestGeminiAgentIntegration:
         # Should have candidates (it's a real genai response)
         assert hasattr(result.raw, "candidates")
 
-    async def test_result_is_agent_response(self, agent: GeminiAgent, google_synth: Any) -> None:
+    async def test_result_is_agent_response(
+        self, agent: GeminiAgent, google_synth: Any
+    ) -> None:
         """Return type should always be AgentResponse regardless of content."""
         audio = await google_synth.synthesize("Hello, how are you today?")
         result = await agent.run(audio)
 
         assert isinstance(result, AgentResponse)
 
-    async def test_tool_call_argument_values(self, gemini_client: Any, google_synth: Any) -> None:
+    async def test_tool_call_argument_values(
+        self, gemini_client: Any, google_synth: Any
+    ) -> None:
         """Verify argument values are plausible, not just that keys exist."""
         agent = GeminiAgent(
             client=gemini_client,
@@ -432,7 +454,7 @@ class TestGeminiLiveAgentProtocol:
 class TestGeminiLiveAgentInit:
     def test_defaults(self) -> None:
         agent = GeminiLiveAgent(client=MagicMock())
-        assert agent.model == "gemini-2.0-flash-live-preview-04-09"
+        assert agent.model == "gemini-live-2.5-flash-native-audio"
         assert agent.tools is None
         assert agent.config is None
         assert agent.response_timeout == 30.0
@@ -565,7 +587,7 @@ class TestGeminiLiveAgentIntegration:
     Requires: ADC credentials + GOOGLE_CLOUD_PROJECT.
     """
 
-    LIVE_MODEL = "gemini-2.0-flash-live-preview-04-09"
+    LIVE_MODEL = "gemini-live-2.5-flash-native-audio"
 
     @pytest.fixture
     def agent(self, gemini_client: Any) -> GeminiLiveAgent:
@@ -579,9 +601,13 @@ class TestGeminiLiveAgentIntegration:
             ),
         )
 
-    async def test_audio_roundtrip_tool_call(self, agent: GeminiLiveAgent, google_synth: Any) -> None:
+    async def test_audio_roundtrip_tool_call(
+        self, agent: GeminiLiveAgent, google_synth: Any
+    ) -> None:
         """Synthesize → Live session → expect book_flight tool call."""
-        audio = await google_synth.synthesize("Book a flight from New York to Los Angeles")
+        audio = await google_synth.synthesize(
+            "Book a flight from New York to Los Angeles"
+        )
         result = await agent.run(audio)
 
         assert len(result.tool_calls) >= 1, f"Expected tool calls, got: {result.raw}"
@@ -590,7 +616,9 @@ class TestGeminiLiveAgentIntegration:
         assert "from_city" in call.arguments
         assert "to_city" in call.arguments
 
-    async def test_multiple_tools_selects_correct_one(self, gemini_client: Any, google_synth: Any) -> None:
+    async def test_multiple_tools_selects_correct_one(
+        self, gemini_client: Any, google_synth: Any
+    ) -> None:
         agent = GeminiLiveAgent(
             client=gemini_client,
             model=self.LIVE_MODEL,
@@ -604,7 +632,9 @@ class TestGeminiLiveAgentIntegration:
         assert result.tool_calls[0].name == "get_weather"
         assert "city" in result.tool_calls[0].arguments
 
-    async def test_result_is_agent_response(self, agent: GeminiLiveAgent, google_synth: Any) -> None:
+    async def test_result_is_agent_response(
+        self, agent: GeminiLiveAgent, google_synth: Any
+    ) -> None:
         audio = await google_synth.synthesize("Book a flight from London to Paris")
         result = await agent.run(audio)
 

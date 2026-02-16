@@ -36,7 +36,7 @@ pipeline:
     name: gemini_live
     class_path: "russo.adapters.gemini.GeminiLiveAgent"
     params:
-      model: "gemini-live-2.5-flash-preview"
+      model: "gemini-live-2.5-flash-native-audio"
 
   tool_recorder:
     name: recorder

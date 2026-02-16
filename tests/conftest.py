@@ -30,7 +30,9 @@ def pytest_configure(config: pytest.Config) -> None:
     )
 
 
-def pytest_collection_modifyitems(config: pytest.Config, items: list[pytest.Item]) -> None:
+def pytest_collection_modifyitems(
+    config: pytest.Config, items: list[pytest.Item]
+) -> None:
     if config.getoption("--integration"):
         return  # user asked for integration tests, don't skip
     skip_integration = pytest.mark.skip(reason="needs --integration flag to run")
@@ -153,7 +155,7 @@ def gemini_live_agent(gemini_client: Any):
 
     return GeminiLiveAgent(
         client=gemini_client,
-        model="gemini-2.0-flash-live-preview-04-09",
+        model="gemini-live-2.5-flash-native-audio",
         tools=[BOOK_FLIGHT_TOOL],
         system_instruction=(
             "You are a travel assistant. When the user asks to book a flight, "

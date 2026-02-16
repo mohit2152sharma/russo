@@ -78,7 +78,7 @@ def russo_synthesizer():
 
 @pytest.fixture(scope="session")
 def russo_agent():
-    return GeminiLiveAgent(api_key="...", model="gemini-2.0-flash-live-001", tools=[...])
+    return GeminiLiveAgent(api_key="...", model="gemini-live-2.5-flash-native-audio", tools=[...])
 ```
 
 ```python

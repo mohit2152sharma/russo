@@ -32,7 +32,7 @@ agent = GeminiAgent(
 ```python
 agent = GeminiLiveAgent(
     api_key="...",
-    model="gemini-2.0-flash-live-001",
+    model="gemini-live-2.5-flash-native-audio",
     tools=[{"function_declarations": [...]}],
 )
 ```

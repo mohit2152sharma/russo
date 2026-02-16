@@ -83,7 +83,7 @@ async def example_gemini_live_agent():
 
     agent = GeminiLiveAgent(
         client=client,
-        model="gemini-live-2.5-flash-preview",  # Google AI model name
+        model="gemini-live-2.5-flash-native-audio",
         tools=[BOOK_FLIGHT_TOOL],
         system_instruction=(
             "You are a travel assistant. When the user asks to book a flight, call the book_flight function."
@@ -122,7 +122,7 @@ async def example_vertex_ai():
 
     agent = GeminiLiveAgent(
         client=client,
-        model="gemini-2.0-flash-live-preview-04-09",  # Vertex AI model name
+        model="gemini-live-2.5-flash-native-audio",
         tools=[BOOK_FLIGHT_TOOL],
     )
 

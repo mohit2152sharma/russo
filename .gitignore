@@ -40,3 +40,6 @@ site/
 .env
 .env.*
 audio_output
+
+# Scripts creds (never commit)
+scripts/creds/

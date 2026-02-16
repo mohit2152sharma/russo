@@ -1,0 +1,9 @@
+# Copy to terraform.tfvars and set your values.
+# terraform.tfvars is gitignored — do not commit it.
+
+project_id     = "your-gcp-project-id"
+project_number = "your-gcp-project-number"
+github_repo    = "owner/repo"
+
+# Optional (have defaults in variables.tf)
+# region = "us-central1"
