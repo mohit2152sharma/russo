@@ -51,7 +51,10 @@ async def example_gemini_agent():
         client=client,
         model="gemini-2.0-flash",
         tools=[BOOK_FLIGHT_TOOL],
-        system_instruction="You are a travel assistant. When the user asks to book a flight, call the book_flight function.",
+        system_instruction=(
+            "You are a travel assistant. When the user asks to book a flight, "
+            "call the book_flight function."
+        ),
     )
 
     synthesizer = GoogleSynthesizer(api_key=os.environ["GOOGLE_API_KEY"])
@@ -83,7 +86,10 @@ async def example_gemini_live_agent():
         client=client,
         model="gemini-live-2.5-flash-preview",  # Google AI model name
         tools=[BOOK_FLIGHT_TOOL],
-        system_instruction="You are a travel assistant. When the user asks to book a flight, call the book_flight function.",
+        system_instruction=(
+            "You are a travel assistant. When the user asks to book a flight, "
+            "call the book_flight function."
+        ),
     )
 
     synthesizer = GoogleSynthesizer(api_key=os.environ["GOOGLE_API_KEY"])

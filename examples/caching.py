@@ -42,7 +42,7 @@ async def main():
     synth.cache.clear()  # start fresh for the demo
 
     # First call: cache miss -> calls the inner synthesizer
-    result1 = await russo.run(
+    await russo.run(
         prompt="Book a flight from NYC to LA",
         synthesizer=synth,
         agent=fake_agent,
@@ -52,7 +52,7 @@ async def main():
     print(f"  Cache size after first run: {synth.cache.size()}")
 
     # Second call with same prompt: cache hit -> no TTS call
-    result2 = await russo.run(
+    await russo.run(
         prompt="Book a flight from NYC to LA",
         synthesizer=synth,
         agent=fake_agent,
@@ -69,7 +69,7 @@ async def main():
 
     # --- Example 3: Cache key extras (invalidate on config change) ---
     print("\n=== Example 3: Cache key extras ===")
-    synth3 = CachedSynthesizer(
+    _synth3 = CachedSynthesizer(
         inner,
         cache_key_extra={"voice": "Kore", "model": "gemini-2.5-flash-preview-tts"},
     )
