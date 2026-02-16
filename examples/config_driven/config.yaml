@@ -1,0 +1,104 @@
+# russo config-driven pipeline example.
+#
+# This YAML file defines the full pipeline (components) and test suite.
+# Run via CLI:   russo --config examples/config_driven/config.yaml --report report.json
+# Or load programmatically — see run.py in this directory.
+#
+# Each pipeline component references a Python class by import path.
+# The "params" dict is passed as **kwargs to the class constructor.
+
+pipeline:
+  sample_generator:
+    name: tts_generator
+    class_path: "russo.synthesizers.google.GoogleSynthesizer"
+    params:
+      voice: "Kore"
+      model: "gemini-2.5-flash-preview-tts"
+
+  stream_source:
+    name: pcm_streamer
+    class_path: "russo.synthesizers.google.GoogleSynthesizer"
+    params: {}
+
+  model_adapter:
+    name: gemini_live
+    class_path: "russo.adapters.gemini.GeminiLiveAgent"
+    params:
+      model: "gemini-live-2.5-flash-preview"
+
+  tool_recorder:
+    name: recorder
+    class_path: "russo.evaluators.exact.ExactEvaluator"
+    params: {}
+
+  matcher:
+    name: exact_matcher
+    class_path: "russo.evaluators.exact.ExactEvaluator"
+    params: {}
+
+  # audio_evaluator is optional — omit to skip audio response evaluation
+  # audio_evaluator:
+  #   name: audio_eval
+  #   class_path: "my_project.evaluators.AudioEval"
+  #   params: {}
+
+# ---------------------------------------------------------------------------
+# Test suite — list of test cases
+# ---------------------------------------------------------------------------
+tests:
+  - id: "book_flight_berlin_rome"
+    description: "User asks to book a flight from Berlin to Rome"
+    audio_spec:
+      id: "tts_berlin_rome"
+      generator: "tts_generator"
+      parameters:
+        text: "Book a flight from Berlin to Rome for tomorrow"
+    instructions: >
+      You are a travel assistant. When the user asks to book a flight,
+      call the book_flight function with from_city and to_city.
+    tools:
+      - name: "book_flight"
+        description: "Book a flight between two cities"
+        json_schema:
+          type: object
+          properties:
+            from_city:
+              type: string
+              description: "Departure city"
+            to_city:
+              type: string
+              description: "Arrival city"
+          required:
+            - from_city
+            - to_city
+    tool_expectation:
+      name: "book_flight"
+      arguments:
+        from_city: "Berlin"
+        to_city: "Rome"
+
+  - id: "get_weather_tokyo"
+    description: "User asks about weather in Tokyo"
+    audio_spec:
+      id: "tts_weather_tokyo"
+      generator: "tts_generator"
+      parameters:
+        text: "What's the weather like in Tokyo today?"
+    instructions: >
+      You are a helpful assistant with access to weather tools.
+      When the user asks about weather, call get_weather with the city.
+    tools:
+      - name: "get_weather"
+        description: "Get current weather for a city"
+        json_schema:
+          type: object
+          properties:
+            city:
+              type: string
+              description: "City name"
+          required:
+            - city
+    tool_expectation:
+      name: "get_weather"
+      arguments:
+        city: "Tokyo"
