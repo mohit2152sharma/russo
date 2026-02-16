@@ -48,16 +48,12 @@ async def _run_from_config(
         tool_recorder=build_component(registry, config.pipeline.tool_recorder),
         matcher=build_component(registry, config.pipeline.matcher),
         audio_evaluator=(
-            build_component(registry, config.pipeline.audio_evaluator)
-            if config.pipeline.audio_evaluator
-            else None
+            build_component(registry, config.pipeline.audio_evaluator) if config.pipeline.audio_evaluator else None
         ),
     )
 
     effective_runs = runs if runs is not None else config.runs
-    effective_concurrency = (
-        max_concurrency if max_concurrency is not None else config.max_concurrency
-    )
+    effective_concurrency = max_concurrency if max_concurrency is not None else config.max_concurrency
 
     runner = DefaultTestRunner(deps)
     report = await runner.run_many(

@@ -42,11 +42,7 @@ class FakeAgent:
         if self.delay:
             await asyncio.sleep(self.delay)
         self.call_count += 1
-        return AgentResponse(
-            tool_calls=[
-                ToolCall(name=self.tool_name, arguments={"from": "A", "to": "B"})
-            ]
-        )
+        return AgentResponse(tool_calls=[ToolCall(name=self.tool_name, arguments={"from": "A", "to": "B"})])
 
 
 class FailingAgent:
@@ -103,9 +99,7 @@ class TestBatchResult:
             SingleRunResult(
                 prompt="p1",
                 run_index=1,
-                eval_result=EvalResult(
-                    passed=False, expected=[ToolCall(name="t")], actual=[]
-                ),
+                eval_result=EvalResult(passed=False, expected=[ToolCall(name="t")], actual=[]),
             ),
         ]
         br = BatchResult(runs=runs)
@@ -125,9 +119,7 @@ class TestBatchResult:
             SingleRunResult(
                 prompt="prompt_b",
                 run_index=0,
-                eval_result=EvalResult(
-                    passed=False, expected=[ToolCall(name="t")], actual=[]
-                ),
+                eval_result=EvalResult(passed=False, expected=[ToolCall(name="t")], actual=[]),
             ),
         ]
         br = BatchResult(runs=runs)
@@ -305,9 +297,7 @@ class TestRunConcurrent:
 class TestRunConcurrentIntegration:
     """Integration tests for concurrent pipeline — real Gemini API."""
 
-    async def test_single_prompt_multiple_runs(
-        self, google_synth, gemini_live_agent
-    ) -> None:
+    async def test_single_prompt_multiple_runs(self, google_synth, gemini_live_agent) -> None:
         result = await run_concurrent(
             prompts="Book a flight from New York to Los Angeles",
             synthesizer=google_synth,
@@ -319,9 +309,7 @@ class TestRunConcurrentIntegration:
 
         print(f"\n{result.summary()}")
         assert result.total == 3
-        assert (
-            result.pass_rate >= 0.5
-        ), f"At least half should pass:\n{result.summary()}"
+        assert result.pass_rate >= 0.5, f"At least half should pass:\n{result.summary()}"
 
     async def test_multiple_prompts(self, google_synth, gemini_live_agent) -> None:
         result = await run_concurrent(
@@ -340,9 +328,7 @@ class TestRunConcurrentIntegration:
         assert result.total == 2
         assert result.pass_rate >= 0.5
 
-    async def test_multiple_prompts_multiple_runs(
-        self, google_synth, gemini_live_agent
-    ) -> None:
+    async def test_multiple_prompts_multiple_runs(self, google_synth, gemini_live_agent) -> None:
         result = await run_concurrent(
             prompts=[
                 "Book a flight from Tokyo to Sydney",

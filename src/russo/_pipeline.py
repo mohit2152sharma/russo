@@ -80,9 +80,7 @@ async def run_concurrent(
                 evaluator=evaluator,
                 expect=expect,
             )
-            return SingleRunResult(
-                prompt=prompt, run_index=run_index, eval_result=result
-            )
+            return SingleRunResult(prompt=prompt, run_index=run_index, eval_result=result)
 
         if semaphore:
             async with semaphore:

@@ -31,9 +31,7 @@ class AudioStreamSource(Protocol):
 
 
 class ModelSessionAdapter(Protocol):
-    async def run(
-        self, audio_stream: AsyncIterator[bytes], context: ModelRunContext
-    ) -> ModelRunResult:
+    async def run(self, audio_stream: AsyncIterator[bytes], context: ModelRunContext) -> ModelRunResult:
         """Run a model session and return tool calls and audio responses."""
 
 
@@ -46,16 +44,12 @@ class ToolCallRecorder(Protocol):
 
 
 class ExpectationMatcher(Protocol):
-    def match(
-        self, expectation: ToolCallExpectation, tool_calls: Sequence[ToolCall]
-    ) -> EvaluationResult:
+    def match(self, expectation: ToolCallExpectation, tool_calls: Sequence[ToolCall]) -> EvaluationResult:
         """Compare expected tool calls against observed tool calls."""
 
 
 class AudioResponseEvaluator(Protocol):
-    def evaluate(
-        self, expectation: AudioResponseExpectation, responses: Sequence[AudioResponse]
-    ) -> EvaluationResult:
+    def evaluate(self, expectation: AudioResponseExpectation, responses: Sequence[AudioResponse]) -> EvaluationResult:
         """Evaluate audio responses against an expectation."""
 
 

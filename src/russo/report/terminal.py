@@ -51,9 +51,7 @@ class TerminalReporter:
             lines.append(f"  {status}  {name:<{max_name_len}}  ({rate} match){suffix}")
 
         lines.append("-" * 60)
-        lines.append(
-            f"  Total: {self.total}  Passed: {self.passed}  Failed: {self.failed}"
-        )
+        lines.append(f"  Total: {self.total}  Passed: {self.passed}  Failed: {self.failed}")
         lines.append("=" * 60)
 
         failures = [(name, r) for name, r in self.results if not r.passed]
