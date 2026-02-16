@@ -133,6 +133,7 @@ nav:
       - Evaluators: tutorial/evaluators.md
       - Caching: tutorial/caching.md
       - pytest Plugin: tutorial/pytest-plugin.md
+  - Examples: examples.md
   - Concepts:
       - Architecture: concepts/architecture.md
       - Protocols: concepts/protocols.md
