@@ -29,6 +29,7 @@ Most examples that hit real APIs expect a `GOOGLE_API_KEY` or `OPENAI_API_KEY` e
 | [`caching.py`](caching.py) | Cache synthesized audio with `CachedSynthesizer` and `AudioCache` |
 | [`pytest_integration/`](pytest_integration/) | Full pytest setup with markers, fixtures, and CLI options |
 | [`config_driven/`](config_driven/) | YAML-driven pipeline using `russo` CLI or programmatic config loader |
+| [`websocket_testing/`](websocket_testing/) | End-to-end WebSocket agent testing with Gemini |
 
 ## Running
 

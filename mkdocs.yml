@@ -146,6 +146,7 @@ nav:
       - Caching: examples/caching.md
       - Concurrent Runs: examples/concurrent-runs.md
       - pytest Integration: examples/pytest-integration.md
+      - WebSocket Testing (E2E): examples/websocket-testing.md
       - Config-Driven Pipeline: examples/config-driven.md
   - Concepts:
       - Architecture: concepts/architecture.md

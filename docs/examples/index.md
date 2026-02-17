@@ -17,4 +17,5 @@ Runnable, step-by-step examples for every major russo feature. Each example is a
 | [Caching](caching.md) | `CachedSynthesizer` and `AudioCache` |
 | [Concurrent Runs](concurrent-runs.md) | `russo.run_concurrent()` — multi-prompt and multi-run testing |
 | [pytest Integration](pytest-integration.md) | Markers, fixtures, and CLI options |
+| [WebSocket Testing (E2E)](websocket-testing.md) | End-to-end WebSocket server + Gemini, tested with real TTS |
 | [Config-Driven Pipeline](config-driven.md) | YAML-driven pipeline via CLI or programmatic loader |
