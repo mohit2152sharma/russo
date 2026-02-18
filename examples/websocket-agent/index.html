@@ -18,7 +18,7 @@
         <link rel="prev" href="../http-agent/">
       
       
-        <link rel="next" href="../caching/">
+        <link rel="next" href="../custom-parser/">
       
       
         
@@ -1234,10 +1234,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-4-with-a-response-parser" class="md-nav__link">
+  <a href="#example-4-custom-response-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example 4: With a response parser
+        Example 4: Custom response structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-5-provider-specific-parser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 5: Provider-specific parser
       
     </span>
   </a>
@@ -1248,6 +1259,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../custom-parser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Custom Response Parser
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -2433,6 +2472,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/parsers/mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JSON
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2597,10 +2664,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-4-with-a-response-parser" class="md-nav__link">
+  <a href="#example-4-custom-response-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example 4: With a response parser
+        Example 4: Custom response structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-5-provider-specific-parser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 5: Provider-specific parser
       
     </span>
   </a>
@@ -2753,17 +2831,29 @@
 </span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="n">max_messages</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
 </span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="p">)</span>
 </span></code></pre></div>
-<h2 id="example-4-with-a-response-parser">Example 4: With a response parser<a class="headerlink" href="#example-4-with-a-response-parser" title="Permanent link">&para;</a></h2>
-<p>Use a built-in parser for provider-specific response formats:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">russo.parsers</span><span class="w"> </span><span class="kn">import</span> <span class="n">GeminiResponseParser</span>
+<h2 id="example-4-custom-response-structure">Example 4: Custom response structure<a class="headerlink" href="#example-4-custom-response-structure" title="Permanent link">&para;</a></h2>
+<p>If your endpoint returns tool calls under a different key or structure, use <code>JsonResponseParser</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">russo.parsers</span><span class="w"> </span><span class="kn">import</span> <span class="n">JsonResponseParser</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">WebSocketAgent</span><span class="p">(</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;ws://localhost:8000/ws/gemini&quot;</span><span class="p">,</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="n">parser</span><span class="o">=</span><span class="n">GeminiResponseParser</span><span class="p">(),</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer my-token&quot;</span><span class="p">},</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1"># Endpoint returns: {&quot;toolCall&quot;: [{&quot;name&quot;: &quot;book_flight&quot;, &quot;arguments&quot;: {...}}]}</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">WebSocketAgent</span><span class="p">(</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;ws://localhost:8000/ws/agent&quot;</span><span class="p">,</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="n">parser</span><span class="o">=</span><span class="n">JsonResponseParser</span><span class="p">(</span><span class="n">tool_calls_key</span><span class="o">=</span><span class="s2">&quot;toolCall&quot;</span><span class="p">),</span>
 </span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="p">)</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>python<span class="w"> </span>examples/websocket_agent.py
+<p>When the WebSocket adapter aggregates multiple messages into a list, the parser automatically scans each message and returns tool calls from the first matching one.</p>
+<p>See <a href="../custom-parser/">Custom Response Parser</a> for full examples.</p>
+<h2 id="example-5-provider-specific-parser">Example 5: Provider-specific parser<a class="headerlink" href="#example-5-provider-specific-parser" title="Permanent link">&para;</a></h2>
+<p>Use a built-in parser for provider-specific response formats:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">russo.parsers</span><span class="w"> </span><span class="kn">import</span> <span class="n">GeminiResponseParser</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">WebSocketAgent</span><span class="p">(</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;ws://localhost:8000/ws/gemini&quot;</span><span class="p">,</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="n">parser</span><span class="o">=</span><span class="n">GeminiResponseParser</span><span class="p">(),</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer my-token&quot;</span><span class="p">},</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="p">)</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>python<span class="w"> </span>examples/websocket_agent.py
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2823,13 +2913,13 @@
         
         
           
-          <a href="../caching/" class="md-footer__link md-footer__link--next" aria-label="Next: Caching">
+          <a href="../custom-parser/" class="md-footer__link md-footer__link--next" aria-label="Next: Custom Response Parser">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Caching
+                Custom Response Parser
               </div>
             </div>
             <div class="md-footer__button md-icon">

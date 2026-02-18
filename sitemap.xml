@@ -2,190 +2,198 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://mohit2152sharma.github.io/russo/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/concepts/architecture/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/concepts/protocols/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/examples/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/examples/basic-pipeline/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/examples/caching/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/examples/concurrent-runs/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/examples/config-driven/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/examples/custom-agent/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/examples/custom-evaluator/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
+    </url>
+    <url>
+         <loc>https://mohit2152sharma.github.io/russo/examples/custom-parser/</loc>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/examples/custom-synthesizer/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/examples/gemini-adapter/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/examples/http-agent/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/examples/openai-adapter/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/examples/pytest-integration/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/examples/websocket-agent/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/examples/websocket-testing/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/getting-started/first-test/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/getting-started/installation/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/reference/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/reference/pytest-plugin/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/reference/adapters/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/reference/adapters/callable/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/reference/adapters/gemini/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/reference/adapters/http/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/reference/adapters/openai/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/reference/adapters/websocket/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/reference/core/assertions/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/reference/core/cache/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/reference/core/init/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/reference/core/pipeline/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/reference/core/protocols/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/reference/core/types/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/reference/evaluators/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/reference/evaluators/exact/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/reference/parsers/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/reference/parsers/gemini/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
+    </url>
+    <url>
+         <loc>https://mohit2152sharma.github.io/russo/reference/parsers/mapping/</loc>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/reference/parsers/openai/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/reference/synthesizers/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/reference/synthesizers/google/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/tutorial/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/tutorial/adapters/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/tutorial/caching/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/tutorial/evaluators/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/tutorial/pipeline/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/tutorial/pytest-plugin/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
     <url>
          <loc>https://mohit2152sharma.github.io/russo/tutorial/synthesizers/</loc>
-         <lastmod>2026-02-17</lastmod>
+         <lastmod>2026-02-18</lastmod>
     </url>
 </urlset>

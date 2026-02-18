@@ -1134,10 +1134,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-2-custom-headers-and-response-parser" class="md-nav__link">
+  <a href="#example-2-custom-response-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example 2: Custom headers and response parser
+        Example 2: Custom response structure
       
     </span>
   </a>
@@ -1145,10 +1145,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-3-custom-field-names" class="md-nav__link">
+  <a href="#example-3-provider-specific-parser" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example 3: Custom field names
+        Example 3: Provider-specific parser
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-4-custom-request-field-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 4: Custom request field names
       
     </span>
   </a>
@@ -1179,6 +1190,34 @@
     
   
     WebSocket Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../custom-parser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Custom Response Parser
   
 
     
@@ -2372,6 +2411,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/parsers/mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JSON
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2464,10 +2531,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-2-custom-headers-and-response-parser" class="md-nav__link">
+  <a href="#example-2-custom-response-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example 2: Custom headers and response parser
+        Example 2: Custom response structure
       
     </span>
   </a>
@@ -2475,10 +2542,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-3-custom-field-names" class="md-nav__link">
+  <a href="#example-3-provider-specific-parser" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example 3: Custom field names
+        Example 3: Provider-specific parser
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-4-custom-request-field-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 4: Custom request field names
       
     </span>
   </a>
@@ -2593,36 +2671,65 @@
 </span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    <span class="n">expect</span><span class="o">=</span><span class="p">[</span><span class="n">russo</span><span class="o">.</span><span class="n">tool_call</span><span class="p">(</span><span class="s2">&quot;book_flight&quot;</span><span class="p">,</span> <span class="n">from_city</span><span class="o">=</span><span class="s2">&quot;NYC&quot;</span><span class="p">,</span> <span class="n">to_city</span><span class="o">=</span><span class="s2">&quot;LA&quot;</span><span class="p">)],</span>
 </span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="p">)</span>
 </span></code></pre></div>
-<h2 id="example-2-custom-headers-and-response-parser">Example 2: Custom headers and response parser<a class="headerlink" href="#example-2-custom-headers-and-response-parser" title="Permanent link">&para;</a></h2>
-<p>Add auth headers and use a built-in parser for provider-specific response formats:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">russo.parsers</span><span class="w"> </span><span class="kn">import</span> <span class="n">GeminiResponseParser</span>
+<h2 id="example-2-custom-response-structure">Example 2: Custom response structure<a class="headerlink" href="#example-2-custom-response-structure" title="Permanent link">&para;</a></h2>
+<p>If your endpoint returns tool calls under a different key, with different field names, or nested inside an envelope, use <code>JsonResponseParser</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">russo.parsers</span><span class="w"> </span><span class="kn">import</span> <span class="n">JsonResponseParser</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">HttpAgent</span><span class="p">(</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://my-api.example.com/v1/agent&quot;</span><span class="p">,</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer my-token&quot;</span><span class="p">,</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        <span class="s2">&quot;X-Request-ID&quot;</span><span class="p">:</span> <span class="s2">&quot;russo-test-001&quot;</span><span class="p">,</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="p">},</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="n">parser</span><span class="o">=</span><span class="n">GeminiResponseParser</span><span class="p">(),</span>  <span class="c1"># parse Gemini-format responses</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="n">timeout</span><span class="o">=</span><span class="mf">30.0</span><span class="p">,</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="p">)</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># Endpoint returns: {&quot;toolCall&quot;: [{&quot;name&quot;: &quot;book_flight&quot;, &quot;arguments&quot;: {...}}]}</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">HttpAgent</span><span class="p">(</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;http://localhost:8000/agent&quot;</span><span class="p">,</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">parser</span><span class="o">=</span><span class="n">JsonResponseParser</span><span class="p">(</span><span class="n">tool_calls_key</span><span class="o">=</span><span class="s2">&quot;toolCall&quot;</span><span class="p">),</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">)</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1"># Endpoint returns a single call object instead of a list:</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="c1"># {&quot;toolCall&quot;: {&quot;name&quot;: &quot;get_weather&quot;, &quot;arguments&quot;: {&quot;city&quot;: &quot;Tokyo&quot;}}}</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">HttpAgent</span><span class="p">(</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;http://localhost:8000/agent&quot;</span><span class="p">,</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    <span class="n">parser</span><span class="o">=</span><span class="n">JsonResponseParser</span><span class="p">(</span><span class="n">tool_calls_key</span><span class="o">=</span><span class="s2">&quot;toolCall&quot;</span><span class="p">,</span> <span class="n">single</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="p">)</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="c1"># Nested envelope with custom field names:</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="c1"># {&quot;response&quot;: {&quot;calls&quot;: [{&quot;fn&quot;: &quot;search&quot;, &quot;params&quot;: {&quot;q&quot;: &quot;hello&quot;}}]}}</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">HttpAgent</span><span class="p">(</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;http://localhost:8000/agent&quot;</span><span class="p">,</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    <span class="n">parser</span><span class="o">=</span><span class="n">JsonResponseParser</span><span class="p">(</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>        <span class="n">tool_calls_key</span><span class="o">=</span><span class="s2">&quot;response.calls&quot;</span><span class="p">,</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>        <span class="n">name_key</span><span class="o">=</span><span class="s2">&quot;fn&quot;</span><span class="p">,</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>        <span class="n">arguments_key</span><span class="o">=</span><span class="s2">&quot;params&quot;</span><span class="p">,</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>    <span class="p">),</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="p">)</span>
+</span></code></pre></div>
+<p>See <a href="../custom-parser/">Custom Response Parser</a> for full examples.</p>
+<h2 id="example-3-provider-specific-parser">Example 3: Provider-specific parser<a class="headerlink" href="#example-3-provider-specific-parser" title="Permanent link">&para;</a></h2>
+<p>Add auth headers and use a built-in parser for provider-specific response formats:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">russo.parsers</span><span class="w"> </span><span class="kn">import</span> <span class="n">GeminiResponseParser</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">HttpAgent</span><span class="p">(</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://my-api.example.com/v1/agent&quot;</span><span class="p">,</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer my-token&quot;</span><span class="p">,</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>        <span class="s2">&quot;X-Request-ID&quot;</span><span class="p">:</span> <span class="s2">&quot;russo-test-001&quot;</span><span class="p">,</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="p">},</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="n">parser</span><span class="o">=</span><span class="n">GeminiResponseParser</span><span class="p">(),</span>  <span class="c1"># parse Gemini-format responses</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="n">timeout</span><span class="o">=</span><span class="mf">30.0</span><span class="p">,</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="p">)</span>
 </span></code></pre></div>
 <p>When a <code>parser</code> is provided, <code>HttpAgent</code> passes the raw HTTP response body to the parser instead of using the default JSON protocol.</p>
-<h2 id="example-3-custom-field-names">Example 3: Custom field names<a class="headerlink" href="#example-3-custom-field-names" title="Permanent link">&para;</a></h2>
+<h2 id="example-4-custom-request-field-names">Example 4: Custom request field names<a class="headerlink" href="#example-4-custom-request-field-names" title="Permanent link">&para;</a></h2>
 <p>If your server expects different JSON field names:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">HttpAgent</span><span class="p">(</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;http://localhost:8000/api/voice&quot;</span><span class="p">,</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">audio_field</span><span class="o">=</span><span class="s2">&quot;audio_data&quot;</span><span class="p">,</span>     <span class="c1"># sends &quot;audio_data&quot; instead of &quot;audio&quot;</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">format_field</span><span class="o">=</span><span class="s2">&quot;audio_format&quot;</span><span class="p">,</span>  <span class="c1"># sends &quot;audio_format&quot; instead of &quot;format&quot;</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">HttpAgent</span><span class="p">(</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;http://localhost:8000/api/voice&quot;</span><span class="p">,</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="n">audio_field</span><span class="o">=</span><span class="s2">&quot;audio_data&quot;</span><span class="p">,</span>     <span class="c1"># sends &quot;audio_data&quot; instead of &quot;audio&quot;</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">format_field</span><span class="o">=</span><span class="s2">&quot;audio_format&quot;</span><span class="p">,</span>  <span class="c1"># sends &quot;audio_format&quot; instead of &quot;format&quot;</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">)</span>
 </span></code></pre></div>
 <p>This sends:</p>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="nt">&quot;audio_data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;base64&gt;&quot;</span><span class="p">,</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">&quot;audio_format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wav&quot;</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">}</span>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="nt">&quot;audio_data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;base64&gt;&quot;</span><span class="p">,</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nt">&quot;audio_format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wav&quot;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">}</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>python<span class="w"> </span>examples/http_agent.py
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>python<span class="w"> </span>examples/http_agent.py
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

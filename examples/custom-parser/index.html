@@ -12,13 +12,13 @@
         <meta name="author" content="Mohit Sharma">
       
       
-        <link rel="canonical" href="https://mohit2152sharma.github.io/russo/examples/custom-evaluator/">
+        <link rel="canonical" href="https://mohit2152sharma.github.io/russo/examples/custom-parser/">
       
       
-        <link rel="prev" href="../custom-agent/">
+        <link rel="prev" href="../websocket-agent/">
       
       
-        <link rel="next" href="../custom-synthesizer/">
+        <link rel="next" href="../caching/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Custom Evaluator - russo</title>
+        <title>Custom Response Parser - russo</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#custom-evaluator" class="md-skip">
+        <a href="#custom-response-parser" class="md-skip">
           Skip to content
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Custom Evaluator
+              Custom Response Parser
             
           </span>
         </div>
@@ -937,37 +937,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Custom Evaluator
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../custom-evaluator/" class="md-nav__link">
         
   
   
@@ -983,98 +956,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#the-evaluator-protocol" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The Evaluator protocol
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#building-a-fuzzy-evaluator" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Building a fuzzy evaluator
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Building a fuzzy evaluator">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#step-1-define-the-evaluator-class" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 1: Define the evaluator class
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-2-implement-the-matching-logic" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2: Implement the matching logic
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-3-test-it" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 3: Test it
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#when-to-use-a-custom-evaluator" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        When to use a custom evaluator
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1224,10 +1105,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../custom-parser/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Custom Response Parser
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1243,6 +1151,103 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#when-to-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to use it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-1-custom-top-level-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 1: Custom top-level key
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-2-single-tool-call-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2: Single tool call object
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-3-custom-field-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 3: Custom field names
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-4-nested-key-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 4: Nested key path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-5-websocket-with-custom-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 5: WebSocket with custom structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#all-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        All options
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2526,10 +2531,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-evaluator-protocol" class="md-nav__link">
+  <a href="#when-to-use-it" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The Evaluator protocol
+        When to use it
       
     </span>
   </a>
@@ -2537,60 +2542,65 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#building-a-fuzzy-evaluator" class="md-nav__link">
+  <a href="#example-1-custom-top-level-key" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Building a fuzzy evaluator
+        Example 1: Custom top-level key
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Building a fuzzy evaluator">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#step-1-define-the-evaluator-class" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 1: Define the evaluator class
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-2-implement-the-matching-logic" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2: Implement the matching logic
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-3-test-it" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 3: Test it
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-use-a-custom-evaluator" class="md-nav__link">
+  <a href="#example-2-single-tool-call-object" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When to use a custom evaluator
+        Example 2: Single tool call object
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-3-custom-field-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 3: Custom field names
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-4-nested-key-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 4: Nested key path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-5-websocket-with-custom-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 5: WebSocket with custom structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#all-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        All options
       
     </span>
   </a>
@@ -2665,111 +2675,106 @@
   
 
 
-<h1 id="custom-evaluator">Custom Evaluator<a class="headerlink" href="#custom-evaluator" title="Permanent link">&para;</a></h1>
-<p>russo uses structural subtyping (protocols), so you don't need to inherit from anything. Just implement the right method signature and you have a valid evaluator.</p>
+<h1 id="custom-response-parser">Custom Response Parser<a class="headerlink" href="#custom-response-parser" title="Permanent link">&para;</a></h1>
+<p>Use <code>JsonResponseParser</code> to handle any HTTP or WebSocket endpoint response structure without writing a full parser class.</p>
 <div class="admonition tip">
 <p class="admonition-title">Source file</p>
-<p><a href="https://github.com/mohit2152sharma/russo/blob/main/examples/custom_evaluator.py"><code>examples/custom_evaluator.py</code></a></p>
+<p><a href="https://github.com/mohit2152sharma/russo/blob/main/examples/custom_parser.py"><code>examples/custom_parser.py</code></a></p>
 </div>
-<h2 id="the-evaluator-protocol">The Evaluator protocol<a class="headerlink" href="#the-evaluator-protocol" title="Permanent link">&para;</a></h2>
-<p>Any class with this method is a valid evaluator:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expected</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ToolCall</span><span class="p">],</span> <span class="n">actual</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ToolCall</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">EvalResult</span>
+<h2 id="when-to-use-it">When to use it<a class="headerlink" href="#when-to-use-it" title="Permanent link">&para;</a></h2>
+<p>The default <code>HttpAgent</code> and <code>WebSocketAgent</code> expect responses in this shape:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span><span class="nt">&quot;tool_calls&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">}}]}</span>
 </span></code></pre></div>
-<p>No base class, no registration -- if the method signature matches, russo accepts it.</p>
-<h2 id="building-a-fuzzy-evaluator">Building a fuzzy evaluator<a class="headerlink" href="#building-a-fuzzy-evaluator" title="Permanent link">&para;</a></h2>
-<p>The built-in <code>ExactEvaluator</code> requires exact name and argument matches. Let's build a <strong>fuzzy</strong> evaluator that:</p>
-<ul>
-<li>Matches tool names <strong>case-insensitively</strong></li>
-<li>Only checks that expected arguments are a <strong>subset</strong> of actual arguments (extra args are OK)</li>
-</ul>
-<h3 id="step-1-define-the-evaluator-class">Step 1: Define the evaluator class<a class="headerlink" href="#step-1-define-the-evaluator-class" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">russo</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">russo._types</span><span class="w"> </span><span class="kn">import</span> <span class="n">EvalResult</span><span class="p">,</span> <span class="n">ToolCall</span><span class="p">,</span> <span class="n">ToolCallMatch</span>
+<p>If your endpoint returns tool calls under a different key, with different field names, or nested inside an envelope, use <code>JsonResponseParser</code> to describe the structure declaratively.</p>
+<h2 id="example-1-custom-top-level-key">Example 1: Custom top-level key<a class="headerlink" href="#example-1-custom-top-level-key" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">russo.parsers</span><span class="w"> </span><span class="kn">import</span> <span class="n">JsonResponseParser</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">russo.adapters</span><span class="w"> </span><span class="kn">import</span> <span class="n">HttpAgent</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">FuzzyEvaluator</span><span class="p">:</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Case-insensitive name matching + subset argument checking.&quot;&quot;&quot;</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expected</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ToolCall</span><span class="p">],</span> <span class="n">actual</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ToolCall</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">EvalResult</span><span class="p">:</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        <span class="n">matches</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ToolCallMatch</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        <span class="n">remaining</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        <span class="k">for</span> <span class="n">exp</span> <span class="ow">in</span> <span class="n">expected</span><span class="p">:</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>            <span class="n">match</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_match</span><span class="p">(</span><span class="n">exp</span><span class="p">,</span> <span class="n">remaining</span><span class="p">)</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>            <span class="n">matches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">match</span><span class="p">)</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>            <span class="k">if</span> <span class="n">match</span><span class="o">.</span><span class="n">matched</span> <span class="ow">and</span> <span class="n">match</span><span class="o">.</span><span class="n">actual</span> <span class="ow">in</span> <span class="n">remaining</span><span class="p">:</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>                <span class="n">remaining</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">actual</span><span class="p">)</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>        <span class="n">passed</span> <span class="o">=</span> <span class="nb">all</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">matched</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">)</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>        <span class="k">return</span> <span class="n">EvalResult</span><span class="p">(</span><span class="n">passed</span><span class="o">=</span><span class="n">passed</span><span class="p">,</span> <span class="n">expected</span><span class="o">=</span><span class="n">expected</span><span class="p">,</span> <span class="n">actual</span><span class="o">=</span><span class="n">actual</span><span class="p">,</span> <span class="n">matches</span><span class="o">=</span><span class="n">matches</span><span class="p">)</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Endpoint returns: {&quot;toolCall&quot;: [{&quot;name&quot;: &quot;book_flight&quot;, &quot;arguments&quot;: {...}}]}</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">HttpAgent</span><span class="p">(</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;http://localhost:8000/agent&quot;</span><span class="p">,</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">parser</span><span class="o">=</span><span class="n">JsonResponseParser</span><span class="p">(</span><span class="n">tool_calls_key</span><span class="o">=</span><span class="s2">&quot;toolCall&quot;</span><span class="p">),</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">)</span>
 </span></code></pre></div>
-<h3 id="step-2-implement-the-matching-logic">Step 2: Implement the matching logic<a class="headerlink" href="#step-2-implement-the-matching-logic" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_find_match</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expected</span><span class="p">:</span> <span class="n">ToolCall</span><span class="p">,</span> <span class="n">candidates</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ToolCall</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">ToolCallMatch</span><span class="p">:</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>        <span class="k">for</span> <span class="n">candidate</span> <span class="ow">in</span> <span class="n">candidates</span><span class="p">:</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_match</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="n">candidate</span><span class="p">):</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>                <span class="k">return</span> <span class="n">ToolCallMatch</span><span class="p">(</span><span class="n">expected</span><span class="o">=</span><span class="n">expected</span><span class="p">,</span> <span class="n">actual</span><span class="o">=</span><span class="n">candidate</span><span class="p">,</span> <span class="n">matched</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        <span class="k">return</span> <span class="n">ToolCallMatch</span><span class="p">(</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>            <span class="n">expected</span><span class="o">=</span><span class="n">expected</span><span class="p">,</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>            <span class="n">matched</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>            <span class="n">details</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;No fuzzy match found for </span><span class="si">{</span><span class="n">expected</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="p">)</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_is_match</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expected</span><span class="p">:</span> <span class="n">ToolCall</span><span class="p">,</span> <span class="n">actual</span><span class="p">:</span> <span class="n">ToolCall</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        <span class="c1"># Case-insensitive name matching</span>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        <span class="k">if</span> <span class="n">expected</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="n">actual</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>            <span class="k">return</span> <span class="kc">False</span>
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>        <span class="c1"># Expected args must be a subset of actual args</span>
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>        <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="n">actual</span><span class="o">.</span><span class="n">arguments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">==</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">expected</span><span class="o">.</span><span class="n">arguments</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+<h2 id="example-2-single-tool-call-object">Example 2: Single tool call object<a class="headerlink" href="#example-2-single-tool-call-object" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Endpoint returns: {&quot;toolCall&quot;: {&quot;name&quot;: &quot;get_weather&quot;, &quot;arguments&quot;: {&quot;city&quot;: &quot;Tokyo&quot;}}}</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">HttpAgent</span><span class="p">(</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;http://localhost:8000/agent&quot;</span><span class="p">,</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">parser</span><span class="o">=</span><span class="n">JsonResponseParser</span><span class="p">(</span><span class="n">tool_calls_key</span><span class="o">=</span><span class="s2">&quot;toolCall&quot;</span><span class="p">,</span> <span class="n">single</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">)</span>
 </span></code></pre></div>
-<h3 id="step-3-test-it">Step 3: Test it<a class="headerlink" href="#step-3-test-it" title="Permanent link">&para;</a></h3>
-<p>The fuzzy evaluator handles cases where the agent returns different casing or extra arguments:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nd">@russo</span><span class="o">.</span><span class="n">agent</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">agent_with_extra_args</span><span class="p">(</span><span class="n">audio</span><span class="p">:</span> <span class="n">russo</span><span class="o">.</span><span class="n">Audio</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">russo</span><span class="o">.</span><span class="n">AgentResponse</span><span class="p">:</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="k">return</span> <span class="n">russo</span><span class="o">.</span><span class="n">AgentResponse</span><span class="p">(</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>        <span class="n">tool_calls</span><span class="o">=</span><span class="p">[</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>            <span class="n">russo</span><span class="o">.</span><span class="n">ToolCall</span><span class="p">(</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Book_Flight&quot;</span><span class="p">,</span>  <span class="c1"># different casing!</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>                <span class="n">arguments</span><span class="o">=</span><span class="p">{</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>                    <span class="s2">&quot;from_city&quot;</span><span class="p">:</span> <span class="s2">&quot;NYC&quot;</span><span class="p">,</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>                    <span class="s2">&quot;to_city&quot;</span><span class="p">:</span> <span class="s2">&quot;LA&quot;</span><span class="p">,</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>                    <span class="s2">&quot;airline&quot;</span><span class="p">:</span> <span class="s2">&quot;Delta&quot;</span><span class="p">,</span>  <span class="c1"># extra argument</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>                    <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;economy&quot;</span><span class="p">,</span>  <span class="c1"># extra argument</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>                <span class="p">},</span>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>            <span class="p">),</span>
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        <span class="p">]</span>
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    <span class="p">)</span>
+<p>Set <code>single=True</code> when the endpoint returns one tool call dict directly instead of a list.</p>
+<h2 id="example-3-custom-field-names">Example 3: Custom field names<a class="headerlink" href="#example-3-custom-field-names" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Endpoint returns: {&quot;calls&quot;: [{&quot;function&quot;: &quot;search&quot;, &quot;params&quot;: {&quot;query&quot;: &quot;hello&quot;}}]}</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">HttpAgent</span><span class="p">(</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;http://localhost:8000/agent&quot;</span><span class="p">,</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">parser</span><span class="o">=</span><span class="n">JsonResponseParser</span><span class="p">(</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        <span class="n">tool_calls_key</span><span class="o">=</span><span class="s2">&quot;calls&quot;</span><span class="p">,</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        <span class="n">name_key</span><span class="o">=</span><span class="s2">&quot;function&quot;</span><span class="p">,</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        <span class="n">arguments_key</span><span class="o">=</span><span class="s2">&quot;params&quot;</span><span class="p">,</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="p">),</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="p">)</span>
 </span></code></pre></div>
-<p>Now run the pipeline with the fuzzy evaluator:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">russo</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;Book a flight from NYC to LA&quot;</span><span class="p">,</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">synthesizer</span><span class="o">=</span><span class="n">FakeSynthesizer</span><span class="p">(),</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">agent</span><span class="o">=</span><span class="n">agent_with_extra_args</span><span class="p">,</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="n">evaluator</span><span class="o">=</span><span class="n">FuzzyEvaluator</span><span class="p">(),</span>  <span class="c1"># our custom evaluator</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="n">expect</span><span class="o">=</span><span class="p">[</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>        <span class="n">russo</span><span class="o">.</span><span class="n">tool_call</span><span class="p">(</span><span class="s2">&quot;book_flight&quot;</span><span class="p">,</span> <span class="n">from_city</span><span class="o">=</span><span class="s2">&quot;NYC&quot;</span><span class="p">,</span> <span class="n">to_city</span><span class="o">=</span><span class="s2">&quot;LA&quot;</span><span class="p">),</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="p">],</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">)</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="n">russo</span><span class="o">.</span><span class="n">assert_tool_calls</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="c1"># Passes! &quot;Book_Flight&quot; matches &quot;book_flight&quot;, extra args are ignored.</span>
+<h2 id="example-4-nested-key-path">Example 4: Nested key path<a class="headerlink" href="#example-4-nested-key-path" title="Permanent link">&para;</a></h2>
+<p>Use dot notation to reach tool calls inside a response envelope:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Endpoint returns: {&quot;response&quot;: {&quot;data&quot;: {&quot;tool_calls&quot;: [...]}}}</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">HttpAgent</span><span class="p">(</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;http://localhost:8000/agent&quot;</span><span class="p">,</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">parser</span><span class="o">=</span><span class="n">JsonResponseParser</span><span class="p">(</span><span class="n">tool_calls_key</span><span class="o">=</span><span class="s2">&quot;response.data.tool_calls&quot;</span><span class="p">),</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">)</span>
 </span></code></pre></div>
-<p>Run it:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>python<span class="w"> </span>examples/custom_evaluator.py
+<h2 id="example-5-websocket-with-custom-structure">Example 5: WebSocket with custom structure<a class="headerlink" href="#example-5-websocket-with-custom-structure" title="Permanent link">&para;</a></h2>
+<p><code>JsonResponseParser</code> also works with <code>WebSocketAgent</code>. When the adapter aggregates multiple messages into a list, the parser scans each message and returns tool calls from the first matching one.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">russo.adapters</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebSocketAgent</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># Server streams several messages; one contains the tool call</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">WebSocketAgent</span><span class="p">(</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;ws://localhost:8000/ws/agent&quot;</span><span class="p">,</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="n">parser</span><span class="o">=</span><span class="n">JsonResponseParser</span><span class="p">(</span><span class="n">tool_calls_key</span><span class="o">=</span><span class="s2">&quot;toolCall&quot;</span><span class="p">),</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="n">is_complete</span><span class="o">=</span><span class="k">lambda</span> <span class="n">msgs</span><span class="p">:</span> <span class="nb">any</span><span class="p">(</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>        <span class="nb">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="n">m</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;done&quot;</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">msgs</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="p">),</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="n">response_timeout</span><span class="o">=</span><span class="mf">15.0</span><span class="p">,</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="p">)</span>
 </span></code></pre></div>
-<p>Expected output:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>PASSED (100% match rate)
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>  [+] book_flight({&#39;from_city&#39;: &#39;NYC&#39;, &#39;to_city&#39;: &#39;LA&#39;}) -&gt; Book_Flight({&#39;from_city&#39;: &#39;NYC&#39;, &#39;to_city&#39;: &#39;LA&#39;, &#39;airline&#39;: &#39;Delta&#39;, &#39;class&#39;: &#39;economy&#39;})
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>Fuzzy evaluator matched despite case difference and extra args!
+<h2 id="all-options">All options<a class="headerlink" href="#all-options" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tool_calls_key</code></td>
+<td><code>"tool_calls"</code></td>
+<td>Dot-path to the tool calls in the response</td>
+</tr>
+<tr>
+<td><code>name_key</code></td>
+<td><code>"name"</code></td>
+<td>Key for the function name within each call</td>
+</tr>
+<tr>
+<td><code>arguments_key</code></td>
+<td><code>"arguments"</code></td>
+<td>Key for the arguments dict within each call</td>
+</tr>
+<tr>
+<td><code>single</code></td>
+<td><code>False</code></td>
+<td><code>True</code> if the key points to a single object instead of a list</td>
+</tr>
+</tbody>
+</table>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>python<span class="w"> </span>examples/custom_parser.py
 </span></code></pre></div>
-<h2 id="when-to-use-a-custom-evaluator">When to use a custom evaluator<a class="headerlink" href="#when-to-use-a-custom-evaluator" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Fuzzy matching</strong> -- case-insensitive names, partial argument matches</li>
-<li><strong>Semantic matching</strong> -- use an LLM to judge if arguments are "close enough"</li>
-<li><strong>Scoring</strong> -- return a confidence score instead of pass/fail</li>
-<li><strong>Subset matching</strong> -- only require some of the expected tool calls to match</li>
-</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These examples require a running server. Replace the URL with your actual endpoint.</p>
+</div>
 
 
 
@@ -2807,7 +2812,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../custom-agent/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Custom Agent">
+          <a href="../websocket-agent/" class="md-footer__link md-footer__link--prev" aria-label="Previous: WebSocket Agent">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2817,20 +2822,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Custom Agent
+                WebSocket Agent
               </div>
             </div>
           </a>
         
         
           
-          <a href="../custom-synthesizer/" class="md-footer__link md-footer__link--next" aria-label="Next: Custom Synthesizer">
+          <a href="../caching/" class="md-footer__link md-footer__link--next" aria-label="Next: Caching">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Custom Synthesizer
+                Caching
               </div>
             </div>
             <div class="md-footer__button md-icon">
