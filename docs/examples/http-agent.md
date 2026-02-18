@@ -51,7 +51,41 @@ result = await russo.run(
 )
 ```
 
-## Example 2: Custom headers and response parser
+## Example 2: Custom response structure
+
+If your endpoint returns tool calls under a different key, with different field names, or nested inside an envelope, use `JsonResponseParser`:
+
+```python
+from russo.parsers import JsonResponseParser
+
+# Endpoint returns: {"toolCall": [{"name": "book_flight", "arguments": {...}}]}
+agent = HttpAgent(
+    url="http://localhost:8000/agent",
+    parser=JsonResponseParser(tool_calls_key="toolCall"),
+)
+
+# Endpoint returns a single call object instead of a list:
+# {"toolCall": {"name": "get_weather", "arguments": {"city": "Tokyo"}}}
+agent = HttpAgent(
+    url="http://localhost:8000/agent",
+    parser=JsonResponseParser(tool_calls_key="toolCall", single=True),
+)
+
+# Nested envelope with custom field names:
+# {"response": {"calls": [{"fn": "search", "params": {"q": "hello"}}]}}
+agent = HttpAgent(
+    url="http://localhost:8000/agent",
+    parser=JsonResponseParser(
+        tool_calls_key="response.calls",
+        name_key="fn",
+        arguments_key="params",
+    ),
+)
+```
+
+See [Custom Response Parser](custom-parser.md) for full examples.
+
+## Example 3: Provider-specific parser
 
 Add auth headers and use a built-in parser for provider-specific response formats:
 
@@ -71,7 +105,7 @@ agent = HttpAgent(
 
 When a `parser` is provided, `HttpAgent` passes the raw HTTP response body to the parser instead of using the default JSON protocol.
 
-## Example 3: Custom field names
+## Example 4: Custom request field names
 
 If your server expects different JSON field names:
 

@@ -1,6 +1,6 @@
 [project]
 name = "russo"
-version = "0.3.2"
+version = "0.3.3"
 description = "Testing framework for LLM tool-call accuracy — audio & text"
 readme = "README.md"
 license = { text = "MIT" }

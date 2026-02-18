@@ -26,6 +26,7 @@ Most examples that hit real APIs expect a `GOOGLE_API_KEY` or `OPENAI_API_KEY` e
 | [`openai_adapter.py`](openai_adapter.py) | Use `OpenAIAgent` and `OpenAIRealtimeAgent` |
 | [`http_agent.py`](http_agent.py) | Test an HTTP endpoint with `HttpAgent` |
 | [`websocket_agent.py`](websocket_agent.py) | Test a WebSocket endpoint with `WebSocketAgent` |
+| [`custom_parser.py`](custom_parser.py) | Parse custom response structures with `JsonResponseParser` |
 | [`caching.py`](caching.py) | Cache synthesized audio with `CachedSynthesizer` and `AudioCache` |
 | [`pytest_integration/`](pytest_integration/) | Full pytest setup with markers, fixtures, and CLI options |
 | [`config_driven/`](config_driven/) | YAML-driven pipeline using `russo` CLI or programmatic config loader |

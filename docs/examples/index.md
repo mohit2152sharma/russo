@@ -14,6 +14,7 @@ Runnable, step-by-step examples for every major russo feature. Each example is a
 | [OpenAI Adapters](openai-adapter.md) | `OpenAIAgent` and `OpenAIRealtimeAgent` |
 | [HTTP Agent](http-agent.md) | Test HTTP endpoints with `HttpAgent` |
 | [WebSocket Agent](websocket-agent.md) | Test WebSocket endpoints with custom hooks |
+| [Custom Response Parser](custom-parser.md) | Parse arbitrary JSON response structures with `JsonResponseParser` |
 | [Caching](caching.md) | `CachedSynthesizer` and `AudioCache` |
 | [Concurrent Runs](concurrent-runs.md) | `russo.run_concurrent()` — multi-prompt and multi-run testing |
 | [pytest Integration](pytest-integration.md) | Markers, fixtures, and CLI options |

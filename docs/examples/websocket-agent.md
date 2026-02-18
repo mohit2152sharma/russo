@@ -103,7 +103,25 @@ agent = WebSocketAgent(
 )
 ```
 
-## Example 4: With a response parser
+## Example 4: Custom response structure
+
+If your endpoint returns tool calls under a different key or structure, use `JsonResponseParser`:
+
+```python
+from russo.parsers import JsonResponseParser
+
+# Endpoint returns: {"toolCall": [{"name": "book_flight", "arguments": {...}}]}
+agent = WebSocketAgent(
+    url="ws://localhost:8000/ws/agent",
+    parser=JsonResponseParser(tool_calls_key="toolCall"),
+)
+```
+
+When the WebSocket adapter aggregates multiple messages into a list, the parser automatically scans each message and returns tool calls from the first matching one.
+
+See [Custom Response Parser](custom-parser.md) for full examples.
+
+## Example 5: Provider-specific parser
 
 Use a built-in parser for provider-specific response formats:
 

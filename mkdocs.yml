@@ -143,6 +143,7 @@ nav:
       - OpenAI Adapters: examples/openai-adapter.md
       - HTTP Agent: examples/http-agent.md
       - WebSocket Agent: examples/websocket-agent.md
+      - Custom Response Parser: examples/custom-parser.md
       - Caching: examples/caching.md
       - Concurrent Runs: examples/concurrent-runs.md
       - pytest Integration: examples/pytest-integration.md
@@ -177,4 +178,5 @@ nav:
           - reference/parsers/index.md
           - Gemini: reference/parsers/gemini.md
           - OpenAI: reference/parsers/openai.md
+          - JSON: reference/parsers/mapping.md
       - pytest Plugin: reference/pytest-plugin.md
