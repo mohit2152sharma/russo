@@ -79,3 +79,34 @@ class AudioManager:
         if audio.sample_rate != OpenAI.REALTIME_INPUT_SAMPLE_RATE:
             pcm = AudioManager.resample_pcm_16bit(pcm, audio.sample_rate, OpenAI.REALTIME_INPUT_SAMPLE_RATE)
         return pcm
+
+    @staticmethod
+    def prepare_for_opus(audio: Audio, sample_rate: int = 16000, channels: int = 1) -> bytes:
+        """Encode audio to raw Opus packets concatenated together.
+
+        Resamples to *sample_rate* (default 16 kHz) if needed, then encodes
+        in 20 ms frames using the VOIP application profile.
+
+        Requires ``opuslib``: ``pip install opuslib`` (needs system libopus).
+        """
+        try:
+            import opuslib
+        except ImportError as exc:
+            msg = "Opus encoding requires opuslib: pip install opuslib (also needs system libopus)"
+            raise ImportError(msg) from exc
+
+        pcm = AudioManager.extract_pcm(audio)
+        if audio.sample_rate != sample_rate:
+            pcm = AudioManager.resample_pcm_16bit(pcm, audio.sample_rate, sample_rate)
+
+        encoder = opuslib.Encoder(sample_rate, channels, opuslib.APPLICATION_VOIP)
+        frame_size = sample_rate * 20 // 1000  # 20 ms → e.g. 320 samples at 16 kHz
+        bytes_per_frame = frame_size * 2 * channels  # 16-bit samples
+
+        frames: list[bytes] = []
+        for i in range(0, len(pcm), bytes_per_frame):
+            chunk = pcm[i : i + bytes_per_frame]
+            if len(chunk) < bytes_per_frame:
+                chunk = chunk + b"\x00" * (bytes_per_frame - len(chunk))
+            frames.append(encoder.encode(chunk, frame_size))
+        return b"".join(frames)

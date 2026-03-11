@@ -425,9 +425,15 @@ class TestGeminiLiveAgentProtocol:
         agent = GeminiLiveAgent(session=MagicMock())
         assert isinstance(agent, Agent)
 
-    def test_requires_client_or_session(self) -> None:
-        with pytest.raises(ValueError, match="Provide either"):
-            GeminiLiveAgent()
+    def test_auto_creates_client_when_neither_provided(self) -> None:
+        # With no args, a client is auto-created from env vars instead of raising.
+        from unittest.mock import patch
+
+        with patch("russo.adapters.gemini._make_client") as mock_make:
+            mock_make.return_value = MagicMock()
+            agent = GeminiLiveAgent()
+        mock_make.assert_called_once()
+        assert agent.client is not None
 
 
 class TestGeminiLiveAgentInit:

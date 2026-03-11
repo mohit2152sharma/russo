@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 from typing import Literal
 
 from google import genai
@@ -48,8 +49,18 @@ class GoogleSynthesizer:
                 location=location or "us-central1",
             )
         else:
-            # Fall back: let the SDK resolve from env (GOOGLE_API_KEY, ADC, etc.)
-            self._client = genai.Client()
+            # Auto-detect: prefer Vertex AI when a GCP project env var is present
+            _project = project or os.environ.get("GOOGLE_CLOUD_PROJECT") or os.environ.get("GOOGLE_PROJECT_ID")
+            if _project:
+                _location = location or os.environ.get("GOOGLE_CLOUD_LOCATION", "us-central1")
+                # google-auth does not expand ~ in credential paths
+                creds = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
+                if creds:
+                    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.path.expanduser(creds)
+                self._client = genai.Client(vertexai=True, project=_project, location=_location)
+            else:
+                # Fall back: let the SDK resolve from env (GOOGLE_API_KEY, ADC, etc.)
+                self._client = genai.Client()
 
     async def synthesize(self, text: str) -> Audio:
         """Convert text to audio using Gemini TTS."""

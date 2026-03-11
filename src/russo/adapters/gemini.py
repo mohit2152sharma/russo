@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import os
 from typing import Any
 
 from russo._types import AgentResponse, Audio, ToolCall
@@ -20,6 +21,34 @@ from russo.audio import AudioManager, Gemini
 from russo.parsers.gemini import GeminiResponseParser
 
 logger = logging.getLogger("russo.adapters.gemini")
+
+
+def _make_client() -> Any:
+    """Auto-create a ``genai.Client`` from environment variables.
+
+    Resolution order:
+
+    1. ``GOOGLE_API_KEY`` → Google AI API
+    2. ``GOOGLE_CLOUD_PROJECT`` or ``GOOGLE_PROJECT_ID`` → Vertex AI
+       (uses ``GOOGLE_CLOUD_LOCATION``, defaults to ``us-central1``)
+    3. Plain ``genai.Client()`` — SDK's own resolution (ADC, etc.)
+    """
+    from google import genai
+
+    api_key = os.environ.get("GOOGLE_API_KEY")
+    if api_key:
+        return genai.Client(api_key=api_key)
+
+    project = os.environ.get("GOOGLE_CLOUD_PROJECT") or os.environ.get("GOOGLE_PROJECT_ID")
+    if project:
+        location = os.environ.get("GOOGLE_CLOUD_LOCATION", "us-central1")
+        # google-auth does not expand ~ in credential paths
+        creds = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
+        if creds:
+            os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.path.expanduser(creds)
+        return genai.Client(vertexai=True, project=project, location=location)
+
+    return genai.Client()
 
 
 # ---------------------------------------------------------------------------
@@ -52,13 +81,13 @@ class GeminiAgent:
     def __init__(
         self,
         *,
-        client: Any,
+        client: Any | None = None,
         model: str = "gemini-2.0-flash",
         tools: list[Any] | None = None,
         system_instruction: str | None = None,
         config: Any | None = None,
     ) -> None:
-        self.client = client
+        self.client = client if client is not None else _make_client()
         self.model = model
         self.tools = tools
         self.system_instruction = system_instruction
@@ -117,8 +146,8 @@ class GeminiLiveAgent:
         config: Any | None = None,
         response_timeout: float = 30.0,
     ) -> None:
-        if client is None and session is None:
-            raise ValueError("Provide either 'client' (genai.Client) or 'session' (live session)")
+        if session is None and client is None:
+            client = _make_client()
         self.client = client
         self.session = session
         self.model = model

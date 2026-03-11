@@ -4,7 +4,7 @@ from russo.adapters.callable import CallableAgent
 from russo.adapters.gemini import GeminiAgent, GeminiLiveAgent
 from russo.adapters.http import HttpAgent
 from russo.adapters.openai import OpenAIAgent, OpenAIRealtimeAgent
-from russo.adapters.websocket import WebSocketAgent
+from russo.adapters.websocket import WebSocketAgent, WebSocketSession
 
 __all__ = [
     "CallableAgent",
@@ -14,4 +14,5 @@ __all__ = [
     "OpenAIAgent",
     "OpenAIRealtimeAgent",
     "WebSocketAgent",
+    "WebSocketSession",
 ]
