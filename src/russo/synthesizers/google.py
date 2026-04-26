@@ -49,10 +49,13 @@ class GoogleSynthesizer:
                 location=location or "us-central1",
             )
         else:
-            # Auto-detect: prefer Vertex AI when a GCP project env var is present
+            # Auto-detect: API key first, then Vertex when both project AND location set
+            _api_key = os.environ.get("GOOGLE_API_KEY")
             _project = project or os.environ.get("GOOGLE_CLOUD_PROJECT") or os.environ.get("GOOGLE_PROJECT_ID")
-            if _project:
-                _location = location or os.environ.get("GOOGLE_CLOUD_LOCATION", "us-central1")
+            _location = location or os.environ.get("GOOGLE_CLOUD_LOCATION")
+            if _api_key:
+                self._client = genai.Client(api_key=_api_key)
+            elif _project and _location:
                 # google-auth does not expand ~ in credential paths
                 creds = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
                 if creds:

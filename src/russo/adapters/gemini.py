@@ -29,8 +29,8 @@ def _make_client() -> Any:
     Resolution order:
 
     1. ``GOOGLE_API_KEY`` → Google AI API
-    2. ``GOOGLE_CLOUD_PROJECT`` or ``GOOGLE_PROJECT_ID`` → Vertex AI
-       (uses ``GOOGLE_CLOUD_LOCATION``, defaults to ``us-central1``)
+    2. ``GOOGLE_CLOUD_PROJECT`` (or ``GOOGLE_PROJECT_ID``) **and** ``GOOGLE_CLOUD_LOCATION``
+       → Vertex AI
     3. Plain ``genai.Client()`` — SDK's own resolution (ADC, etc.)
     """
     from google import genai
@@ -40,8 +40,8 @@ def _make_client() -> Any:
         return genai.Client(api_key=api_key)
 
     project = os.environ.get("GOOGLE_CLOUD_PROJECT") or os.environ.get("GOOGLE_PROJECT_ID")
-    if project:
-        location = os.environ.get("GOOGLE_CLOUD_LOCATION", "us-central1")
+    location = os.environ.get("GOOGLE_CLOUD_LOCATION")
+    if project and location:
         # google-auth does not expand ~ in credential paths
         creds = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
         if creds:
